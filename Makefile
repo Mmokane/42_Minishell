@@ -6,7 +6,7 @@
 #    By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/21 18:40:29 by mmokane           #+#    #+#              #
-#    Updated: 2023/05/21 19:02:02 by mmokane          ###   ########.fr        #
+#    Updated: 2023/06/01 20:36:35 by mmokane          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,13 +16,13 @@ CC = cc
 
 CFLAGS = -Wall -Werror -Wextra 
 
-SRCS = \
+SRCS = minishell.c test.c \
 
 OBJS = $(SRCS:.c=.o)
 
 $(NAME) : $(OBJS)
 		@echo "\033[1;32m---- COMPILING! ----\033[0m"
-		@cc $(CFLAGS) $(OBJS) -o $(NAME)
+		@cc $(CFLAGS) -lreadline $(OBJS)  -o  $(NAME)
 		@echo "\033[1;32m   ---- DONE ----\033[0m"
 
 .c.o	:
