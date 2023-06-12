@@ -1,43 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/21 18:44:59 by mmokane           #+#    #+#             */
-/*   Updated: 2023/06/08 02:01:13 by mmokane          ###   ########.fr       */
+/*   Created: 2023/06/09 22:16:45 by mmokane           #+#    #+#             */
+/*   Updated: 2023/06/09 22:32:04 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#ifndef PARSING_H
+# define PARSING_H
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <string.h>
-# include "parser/lexer.h"
+# include "minishell.h"
 
-typedef enum Tokens
+typedef struct s_tokens
 {
-	WORD = -1,
-	SPAC = ' ',
-	NEW_LINE = '\n',
-	QUOTE = '\'',
-	DQUOTE = '\"',
-	BACK_SLASH = '\\',
-	ENV = '$',
-	PIPE = '|',
-	LESS = '<',
-	GREATER = '>',
-	HERDOC,
-	REDIR_OUT,
-}	tokens ;
+	char	*value;
+	int		type;
+}	t_tokens;
 
-typedef struct S_Button
-{
-	int word;
-	
-}	t_button;
 #endif

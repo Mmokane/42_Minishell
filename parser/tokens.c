@@ -1,26 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   tokens.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/26 18:44:34 by mmokane           #+#    #+#             */
-/*   Updated: 2023/06/09 22:11:04 by mmokane          ###   ########.fr       */
+/*   Created: 2023/06/09 22:14:54 by mmokane           #+#    #+#             */
+/*   Updated: 2023/06/10 03:59:32 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include <readline/readline.h>
-#include <readline/history.h>
+#include "../includes/minishell.h"
 
-	int main()
+t_tokens *tokens_init(char *value , int type)
+{
+	t_tokens *tokens;
+	
+	tokens = malloc(sizeof(t_tokens));
+	tokens->type = type;
+	tokens->value = value;
+	return (tokens);
+}
+t_tokens *tokens_lentgh(t_tokens **token)
+{
+	int i;
+
+	i = 0;
+	if (token)
 	{
-		char *input;
-		
-		input = readline("./minishell : ");
-
-		printf("%s\n" ,input);
-
-		free(input);
+		while (token[i])
+			i++;
 	}
+	return (token[i]);
+}
+// ** 7yt mbghinach nbdlo l pointer li 3la struct, bghyt nchofo l val
