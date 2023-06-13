@@ -6,4 +6,14 @@ parsing :
 		 the tokens are two types, WORD (null, ok, file...), and Speacial characters (",', < . << , $ , spaces, >>>), 
 li fhmt : lexer hwa whd tool li ktakhd lina l input mn terminal o ktrj3o tokens, y3ni words with meaning, like n3tiwha 'hey' , ayrj3 lina ' then hey then '.
 
-		
+
+parts : lexer
+		tokens;
+		expand;
+		parse;
+		norminette;
+
+		builtsins;
+		export;
+		execution;
+		.
