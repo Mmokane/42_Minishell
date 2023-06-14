@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: moskir <moskir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 02:29:13 by mmokane           #+#    #+#             */
-/*   Updated: 2023/06/14 03:51:26 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/06/14 20:16:46 by moskir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,14 @@ void	arg_checker(int ac, t_env *env_v2, char **env)
 	env_parsing(env_v2, env);// we will take it somewhere else later .
 }
 
-void	*env_parsing(t_env *env_v2, char **env)
+void	*env_parsing(t_env **env_v2, char **env)
 {
-	
+	int i;
+
+	while(*env)
+	{
+		i = get_index(*env, '=');
+				
+	}
 }
 
