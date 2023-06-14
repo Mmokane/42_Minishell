@@ -6,21 +6,25 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 18:44:34 by mmokane           #+#    #+#             */
-/*   Updated: 2023/06/09 22:11:04 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/06/14 03:40:35 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include <readline/readline.h>
-#include <readline/history.h>
+#include "includes/minishell.h"
 
-	int main()
-	{
-		char *input;
-		
-		input = readline("./minishell : ");
 
-		printf("%s\n" ,input);
+// int ft(char *input)
+// {		
+// 	int i = 0;
 
-		free(input);
-	}
+// 	while (input[i])
+// 			i++;
+// 	return i;
+// }
+int main(int ac, char **av)
+{
+	char *input;
+	(void)av;
+	arg_checker(ac);
+	input = readline("./minishell : ");
+}

@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 18:44:59 by mmokane           #+#    #+#             */
-/*   Updated: 2023/06/09 22:34:38 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/06/14 03:40:28 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,26 +18,21 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <string.h>
+# include "../libft/libft.h"
+# include <readline/readline.h>
+# include <readline/history.h>
 
-typedef enum Tokens
-{
-	WORD = -1,
-	SPAC = ' ',
-	NEW_LINE = '\n',
-	QUOTE = '\'',
-	DQUOTE = '\"',
-	BACK_SLASH = '\\',
-	ENV = '$',
-	PIPE = '|',
-	LESS = '<',
-	GREATER = '>',
-	HERDOC,
-	REDIR_OUT,
-}	tokens ;
+int	g_exit_status;
 
-typedef struct S_Button
+int ft(char *input);
+void	arg_checker(int ac, t_env *env, char **env);
+
+typedef struct s_env
 {
-	int word;
-	
-}	t_button;
+	char	*keyword;
+	char	*value;
+	int		confirmation;
+	struct	s_env *next;
+}			t_env;
+
 #endif
