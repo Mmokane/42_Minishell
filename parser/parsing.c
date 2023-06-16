@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 02:29:13 by mmokane           #+#    #+#             */
-/*   Updated: 2023/06/15 01:32:00 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/06/16 05:53:45 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,18 @@ void	*env_parsing(t_env **env_v2, char **env)
 	while(*env)
 	{
 		i = get_index(*env, '=');
-				
+		add_tolast_env(env_v2,
+			new_env_node(ft_substr(*env, 0, i),
+				ft_substr(*env, i + 1, ft_strlen(*env) - i), 1));
+		env++;	
 	}
+	return (env_v2);
 }
+
+// HOME=/users/...
+// 0123456789
+// = index is 4;
+
+// keyowrd is from 0 to 4 : HOME;
+// value is from i + 1 to env -i (4), 1
 

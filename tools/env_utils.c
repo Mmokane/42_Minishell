@@ -6,21 +6,21 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 01:03:54 by mmokane           #+#    #+#             */
-/*   Updated: 2023/06/15 02:40:10 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/06/16 05:54:10 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
 // initialzing and creating new node to inset it to linked;
-t_env *new_env_node(char *keyword, char *value, int confirmation)
+t_env *new_env_node(char *keyword, char *value, int bolean)
 {
 	t_env *new_node;
 
 	new_node = (t_env *)malloc(sizeof(t_env));
 	new_node->value = value;
 	new_node->keyword = keyword;
-	new_node->confirmation = confirmation;
+	new_node->confirmation = bolean;
 	new_node->next = NULL;
 	return (new_node);	
 }
@@ -28,7 +28,7 @@ t_env *new_env_node(char *keyword, char *value, int confirmation)
 t_env *last_env_node(t_env *list)
 {
 	if (!list)
-		return  NULL;
+		return (NULL);
 	while (list->next)
 		list = list->next;
 	return (list);
@@ -40,9 +40,9 @@ void	add_tolast_env(t_env **list, t_env *new_node)
 
 	if (!list)
 	{
-		*list = new;
-		retrun ;
+		*list = new_node;
+		retrun ();
 	}
 	last = last_env_node(list);
-	last->next = new;
+	last->next = new_node;
 }
