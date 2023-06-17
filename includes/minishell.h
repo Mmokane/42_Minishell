@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 18:44:59 by mmokane           #+#    #+#             */
-/*   Updated: 2023/06/16 05:54:17 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/06/17 05:47:21 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,24 @@ int	g_exit_status;
 
 int ft(char *input);
 void	arg_checker(int ac  );
+
+enum {
+	PIPE,
+	DOUBLE,
+	OPERATOR,
+	SPACE,
+	SINGLE_EXP,
+	HYPHEN,
+	SINGLE,
+	WORD,
+};
+typedef struct s_token
+{
+	int				type;
+	char			*content;
+	int				expand;
+	struct s_token *next;	
+}		t_token;
 
 typedef struct s_env
 {

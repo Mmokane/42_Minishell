@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 01:03:54 by mmokane           #+#    #+#             */
-/*   Updated: 2023/06/16 05:54:10 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/06/17 02:55:18 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,6 @@ void	add_tolast_env(t_env **list, t_env *new_node)
 		*list = new_node;
 		retrun ();
 	}
-	last = last_env_node(list);
+	last = last_env_node(*list);
 	last->next = new_node;
 }
