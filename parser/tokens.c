@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 22:14:54 by mmokane           #+#    #+#             */
-/*   Updated: 2023/06/19 10:55:10 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/06/19 10:56:55 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	get_operator_type(char *line, t_token **token)
 	}	
 	if (operator_type(line + i) == 2)
 	{
-		add_tolast_node(token, new_token_node(ft_substr(line + i, 0, 2));
+		add_tolast_node(token, new_token_node(ft_substr(line + i, 0, 2)));
 		return (i + 2);
 	}
 	return (i);		
