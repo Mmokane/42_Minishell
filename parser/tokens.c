@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 22:14:54 by mmokane           #+#    #+#             */
-/*   Updated: 2023/06/17 07:29:05 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/06/19 10:55:10 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,28 +43,27 @@ int operator_type(char *content)
 		return (3);
 	return (0);
 }
-int	get_operator_type(char *line, t_token *token)
+// we will check her for spaces at first then replace them all with one
+// we will check if operator_type is size of one, then add it and return index of next one
+// we check laso if operator_type has size of 2, addd it then return index + 2 to acces next one
+int	get_operator_type(char *line, t_token **token)
 {
 	int i;
 
 	i = 0;
 	while (line[i] && (line[i] == 32 || line[i] == 9))
 		i++;
-	
-		
-}
-
-int	take_operator(char *line, t_token **token)
-{
-	int	i;
-
-	i = 0;
-	while (line[i] && ((line[i] >= 9 && line[i] <= 12) || line[i] == 32))
-		i++;
 	if (i && *token)
-		add_tolast_node(token, new_token_node(ft_strdup("")));
-		
+		add_tolast_node(token, new_token_node(ft_strdup(" ")));
+	if (operator_type(line + i) == 1)
+	{
+		add_tolast_node(token, new_token_node(ft_substr(line + i, 0, 1)));
+		return (i + 1);
+	}	
+	if (operator_type(line + i) == 2)
+	{
+		add_tolast_node(token, new_token_node(ft_substr(line + i, 0, 2));
+		return (i + 2);
+	}
+	return (i);		
 }
-
-> guys
-012345
