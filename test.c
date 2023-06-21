@@ -1,11 +1,22 @@
-// /* ************************************************************************** */
-// /*                                                                            */
-// /*                                                        :::      ::::::::   */
-// /*   test.c                                             :+:      :+:    :+:   */
-// /*                                                    +:+ +:+         +:+     */
-// /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
-// /*                                                +#+#+#+#+#+   +#+           */
-// /*   Created: 2023/06/01 20:32:22 by mmokane           #+#    #+#             */
-// /*   Updated: 2023/06/08 02:55:53 by mmokane          ###   ########.fr       */
-// /*                                                                            */
-// /* ************************************************************************** */
+#include "includes/minishell.h"
+
+void modifyByValue(int value) {
+    value = 10;
+}
+
+void modifyByReference(int *value) {
+    *value = 10;
+}
+
+int main() {
+    int num1 = 5;
+    int num2 = 5;
+
+    modifyByValue(num1);
+    modifyByReference(&num2);
+
+    printf("num1: %d\n", num1); // Output: num1: 5
+    printf("num2: %d\n", num2); // Output: num2: 10
+
+    return 0;
+}

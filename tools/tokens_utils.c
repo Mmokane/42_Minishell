@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 01:56:33 by mmokane           #+#    #+#             */
-/*   Updated: 2023/06/17 06:42:06 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/06/21 01:52:33 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,5 @@ void	clear_token(t_token **list)
 		free(tmp);
 		tmp2 = tmp;
 	}
-	*lst = NULL;
+	*lst = NULL ;
 }

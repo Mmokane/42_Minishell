@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 22:14:54 by mmokane           #+#    #+#             */
-/*   Updated: 2023/06/19 10:56:55 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/06/21 03:42:21 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,3 +67,26 @@ int	get_operator_type(char *line, t_token **token)
 	}
 	return (i);		
 }
+
+// we keep checking for the quote character
+// if we didnt find any , we return an error
+// after finishing we check for the quote character
+// and we crete token for the space before it then we return the after quote i
+int	quotes_cheker(char *line, t_token **token, int c, int *flag)
+{
+	int i;
+
+	i = 0;
+	while (line[i] && line[i] != c)
+		i++;
+	if (line[i] != c)
+	{
+		write(2, "Error at quotes", 19);
+		*flag = 0;
+		return (0);
+	}
+	if (i)
+		add_tolast_node(token, new_token_node(ft_substr(line, 0, i + 1)));
+	return (i++);
+}
+
