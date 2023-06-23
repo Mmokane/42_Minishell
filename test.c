@@ -1,22 +1,22 @@
 #include "includes/minishell.h"
 
-void modifyByValue(int value) {
-    value = 10;
+void	check_tokens(t_token *token)
+{
+	t_token	*tmp;
+
+	tmp = token;
+	printf("--------CHECK_TOKENS-----------\n");
+	while (tmp)
+	{
+		printf("content = %s\n", tmp->content);
+		printf("type    = %d\n", tmp->type);
+		tmp = tmp->next;
+	}
+	printf("----------------------------\n");
 }
-
-void modifyByReference(int *value) {
-    *value = 10;
-}
-
-int main() {
-    int num1 = 5;
-    int num2 = 5;
-
-    modifyByValue(num1);
-    modifyByReference(&num2);
-
-    printf("num1: %d\n", num1); // Output: num1: 5
-    printf("num2: %d\n", num2); // Output: num2: 10
-
-    return 0;
+int main()
+{
+    char *input;
+    input = readline("./minishell : ");
+    checke_tokens(input);
 }
