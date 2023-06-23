@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 22:14:54 by mmokane           #+#    #+#             */
-/*   Updated: 2023/06/21 03:42:21 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/06/23 04:08:34 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int operator_type(char *content)
 // we will check her for spaces at first then replace them all with one
 // we will check if operator_type is size of one, then add it and return index of next one
 // we check laso if operator_type has size of 2, addd it then return index + 2 to acces next one
-int	get_operator_type(char *line, t_token **token)
+int	get_operator(char *line, t_token **token)
 {
 	int i;
 
@@ -89,4 +89,23 @@ int	quotes_cheker(char *line, t_token **token, int c, int *flag)
 		add_tolast_node(token, new_token_node(ft_substr(line, 0, i + 1)));
 	return (i++);
 }
+// we check for quotes at the start, then we check for operators
+// and we skip spaces , checking for operators aswell,
+// we again check for i if its not 0, means there
+// -were word before and i must add it
+int	get_word(char *line, t_token **token, int *flag)
+{
+	int	i;
 
+	i = 0;
+	if (line[i] == 39 || line[i] == 34)
+		return (quotes_checker(line, token, *line, flag));
+	if (operator_type(line + i))
+		return (0);
+	while (line[i] && !operator_type(line + i)
+		&& line[i] != '\'' && line[i] != '\"')
+		i++;
+	if (i)
+		add_tolast_node(token, new_token_node(ft_substr(line, 0, i)));
+	return (i);
+}

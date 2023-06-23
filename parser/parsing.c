@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 02:29:13 by mmokane           #+#    #+#             */
-/*   Updated: 2023/06/17 01:30:01 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/06/23 04:08:48 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,25 @@ void	*env_parsing(t_env **env_v2, char **env)
 		env++;	
 	}
 	return (env_v2);
+}
+
+int	get_check_token(char *line, t_token **token)
+{
+	int	i;
+	int	flag;
+
+	i = 0;
+	flag = 1;
+	while (line[i])
+	{
+		i += get_operator(line + i, token);
+		i += get_word(line + i, token, &flag);
+		if (!flag)
+		{
+			ft_lstclear_t(token);
+			write(2, "Token line error", 16);
+			return (0);
+		}
+	}
+	return (1);
 }
