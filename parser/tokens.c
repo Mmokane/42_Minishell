@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 22:14:54 by mmokane           #+#    #+#             */
-/*   Updated: 2023/06/23 04:49:14 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/06/26 05:59:58 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,13 +93,13 @@ int	quotes_cheker(char *line, t_token **token, int c, int *flag)
 // and we skip spaces , checking for operators aswell,
 // we again check for i if its not 0, means there
 // -were word before and i must add it
-int	get(char *line, t_token **token, int *flag)
+int	get_word(char *line, t_token **token, int *flag)
 {
 	int	i;
 
 	i = 0;
 	if (line[i] == 39 || line[i] == 34)
-		return (quotes_checker(line, token, *line, flag));
+		return (quotes_cheker(line, token, *line, flag));
 	if (operator_type(line + i))
 		return (0);
 	while (line[i] && !operator_type(line + i)

@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 01:03:54 by mmokane           #+#    #+#             */
-/*   Updated: 2023/06/17 02:55:18 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/06/26 06:01:07 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_env *new_env_node(char *keyword, char *value, int bolean)
 	new_node = (t_env *)malloc(sizeof(t_env));
 	new_node->value = value;
 	new_node->keyword = keyword;
-	new_node->confirmation = bolean;
+	new_node->bolean = bolean;
 	new_node->next = NULL;
 	return (new_node);	
 }
@@ -41,7 +41,7 @@ void	add_tolast_env(t_env **list, t_env *new_node)
 	if (!list)
 	{
 		*list = new_node;
-		retrun ();
+		return ;
 	}
 	last = last_env_node(*list);
 	last->next = new_node;

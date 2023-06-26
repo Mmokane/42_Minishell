@@ -6,7 +6,7 @@
 #    By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/21 18:40:29 by mmokane           #+#    #+#              #
-#    Updated: 2023/06/15 01:31:17 by mmokane          ###   ########.fr        #
+#    Updated: 2023/06/26 05:59:19 by mmokane          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,9 @@ CC = cc
 
 CFLAGS = -Wall -Werror -Wextra 
 
-SRCS = minishell.c parser/parsing.c \
+SRCS = parser/parsing.c parser/tokens.c \
+	   tools/env_utils.c tools/get_index.c tools/tokens_utils.c \
+	    minishell.c \
 
 OBJS = $(SRCS:.c=.o)
 

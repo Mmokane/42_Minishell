@@ -6,13 +6,13 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 02:29:13 by mmokane           #+#    #+#             */
-/*   Updated: 2023/06/23 04:08:48 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/06/26 05:57:35 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	arg_checker(int ac, t_env *env_v2, char **env)
+void	arg_checker(int ac, t_env **env_v2, char **env)
 {
 	env_v2 = NULL;
 	
@@ -52,7 +52,7 @@ int	get_check_token(char *line, t_token **token)
 		i += get_word(line + i, token, &flag);
 		if (!flag)
 		{
-			ft_lstclear_t(token);
+			clear_token(token);
 			write(2, "Token line error", 16);
 			return (0);
 		}
