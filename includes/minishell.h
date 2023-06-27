@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 18:44:59 by mmokane           #+#    #+#             */
-/*   Updated: 2023/06/26 05:57:56 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/06/27 03:05:53 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	add_tolast_env(t_env **list, t_env *new_node);
 int 	get_index(char *str, int c);
 t_token *new_token_node(char * content);
 t_token *last_token_node(t_token *list);
-t_token *add_tolast_node(t_token **list, t_token *new_token);
+void	add_tolast_node(t_token **list, t_token *new_token);
 void	clear_token(t_token **list);
 
 

@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 01:56:33 by mmokane           #+#    #+#             */
-/*   Updated: 2023/06/26 06:01:23 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/06/27 03:05:48 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_token *last_token_node(t_token *list)
 	return (list);
 }
 // add a token to last node
-t_token *add_tolast_node(t_token **list, t_token *new_token)
+void add_tolast_node(t_token **list, t_token *new_token)
 {
 	t_token *last;
 
@@ -62,5 +62,5 @@ void	clear_token(t_token **list)
 		free(tmp);
 		tmp2 = tmp;
 	}
-	*lst = NULL ;
+	*list = NULL ;
 }
