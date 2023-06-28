@@ -6,19 +6,22 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 02:29:13 by mmokane           #+#    #+#             */
-/*   Updated: 2023/06/26 05:57:35 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/06/28 00:32:20 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	arg_checker(int ac, t_env **env_v2, char **env)
+// here we will check for arguments, then we parse the environment.
+void	arg_checker(int ac, char **av, t_env **env_v2, char **env)
 {
+	(void)av;
 	env_v2 = NULL;
 	
+	printf("sss");
 	if (ac != 1)
 	{
-		ft_putendl_fd("ERROR : Invalid argument", 2);
+		write(2, "ERROR : Invalid argument", 25);
 		exit (1);
 	}
 	env_parsing(env_v2, env);// we will take it somewhere else later .
