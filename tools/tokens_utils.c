@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 01:56:33 by mmokane           #+#    #+#             */
-/*   Updated: 2023/06/30 13:57:48 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/06/30 14:06:48 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void add_tolast_node(t_token **list, t_token *new_token)
 {
 	t_token *last;
 
-	if (!*list)
+	if (!*list)//
 	{
 		*list = new_token;
 		return ;

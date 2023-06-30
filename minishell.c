@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 18:44:34 by mmokane           #+#    #+#             */
-/*   Updated: 2023/06/30 14:04:38 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/06/30 14:10:46 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int main(int ac, char **av)
 		if(get_check_token(input, &tokens) == 1)
 		{
 			check_tokens(tokens);	
+			clear_token(&tokens);
 		}
 	}
 }
