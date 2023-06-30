@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 22:14:54 by mmokane           #+#    #+#             */
-/*   Updated: 2023/06/26 05:59:58 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/06/30 14:00:15 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,3 +109,18 @@ int	get_word(char *line, t_token **token, int *flag)
 		add_tolast_node(token, new_token_node(ft_substr(line, 0, i)));
 	return (i);
 }
+
+// void	check_tokens(t_token *token)
+// {
+// 	t_token	*tmp;
+
+// 	tmp = token;
+// 	printf("--------CHECK_TOKENS-----------\n");
+// 	while (tmp)
+// 	{
+// 		printf("content = %s\n", tmp->content);
+// 		printf("type    = %d\n", tmp->type);
+// 		tmp = tmp->next;
+// 	}
+// 	printf("----------------------------\n");
+// }

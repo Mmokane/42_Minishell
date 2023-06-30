@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 01:56:33 by mmokane           #+#    #+#             */
-/*   Updated: 2023/06/27 03:05:48 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/06/30 13:57:48 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ t_token *new_token_node(char * content)
 	t_token *new_token;
 
 	new_token = (t_token *)malloc(sizeof(t_token));
+	if (!new_token)
+		return (NULL);
 	new_token->content = content;
 	new_token->type = token_type(content);// create it;
 	new_token->expand = 0;
@@ -37,7 +39,7 @@ void add_tolast_node(t_token **list, t_token *new_token)
 {
 	t_token *last;
 
-	if (!list)
+	if (!*list)
 	{
 		*list = new_token;
 		return ;

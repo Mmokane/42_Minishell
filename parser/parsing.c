@@ -6,57 +6,43 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 02:29:13 by mmokane           #+#    #+#             */
-/*   Updated: 2023/06/28 00:32:20 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/06/30 14:02:38 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
 // here we will check for arguments, then we parse the environment.
-void	arg_checker(int ac, char **av, t_env **env_v2, char **env)
-{
-	(void)av;
-	env_v2 = NULL;
+// void	arg_checker(int ac, t_env **env_v2, char **env)
+// {
+// 	printf("sss");
+// 	env_v2 = NULL;
 	
-	printf("sss");
-	if (ac != 1)
-	{
-		write(2, "ERROR : Invalid argument", 25);
-		exit (1);
-	}
-	env_parsing(env_v2, env);// we will take it somewhere else later .
-}
+// 	if (ac != 2)
+// 	{
+// 		write(2, "ERROR : Invalid argument", 25);
+// 		exit (1);
+// 	}
+// 	env_parsing(env_v2, env);// we will take it somewhere else later .
+// }
 
-void	*env_parsing(t_env **env_v2, char **env)
-{
-	int i;
 
-	while(*env)
-	{
-		i = get_index(*env, '=');
-		add_tolast_env(env_v2,
-			new_env_node(ft_substr(*env, 0, i),
-				ft_substr(*env, i + 1, ft_strlen(*env) - i), 1));
-		env++;	
-	}
-	return (env_v2);
-}
 
-int	get_check_token(char *line, t_token **token)
+int	get_check_token(char *input, t_token **token)
 {
 	int	i;
 	int	flag;
 
 	i = 0;
 	flag = 1;
-	while (line[i])
+	while (input[i])
 	{
-		i += get_operator(line + i, token);
-		i += get_word(line + i, token, &flag);
+		i += get_operator(input + i, token);
+		i += get_word(input + i, token, &flag);
 		if (!flag)
 		{
 			clear_token(token);
-			write(2, "Token line error", 16);
+			write(2, "Token input error", 16);
 			return (0);
 		}
 	}

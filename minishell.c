@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 18:44:34 by mmokane           #+#    #+#             */
-/*   Updated: 2023/06/28 00:32:29 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/06/30 14:04:38 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	check_tokens(t_token *token)
 	printf("----------------------------\n");
 }
 
-int main(int ac, char **av, char **env)
+int main(int ac, char **av)
 {
 	(void)ac;
 	(void)av;
@@ -37,15 +37,22 @@ int main(int ac, char **av, char **env)
 
 	env_v2 = NULL;
 	tokens = NULL;
-	printf("Zping!\n");
-	arg_checker(ac, av, &env_v2, env);
+	if (ac != 1)
+	{
+		write(2, "minishell :", 12);
+		write(2, "no such file or directory\n", 28);
+		exit(1);
+	}
 	while (1)
 	{
 		input = readline("minishell:");
-		if (!input)
-			exit(EXIT_FAILURE);
-		if (ft_strlen(input) != 0)
-			add_history(input);
-		
+		// if (!input)
+		// 	exit(EXIT_FAILURE);
+		// if (ft_strlen(input) != 0)
+		// 	add_history(input);
+		if(get_check_token(input, &tokens) == 1)
+		{
+			check_tokens(tokens);	
+		}
 	}
 }
