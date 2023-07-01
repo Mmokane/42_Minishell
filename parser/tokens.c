@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 22:14:54 by mmokane           #+#    #+#             */
-/*   Updated: 2023/06/30 14:00:15 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/01 10:36:44 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ int	token_type(char *content)
 		return (SPACE);
 	if (*content == '~')
 		return (HYPHEN);
+	if (*content == '\'')
+		return (SINGLE);
 	else 
 		return (WORD);
 }
@@ -76,18 +78,18 @@ int	quotes_cheker(char *line, t_token **token, int c, int *flag)
 {
 	int i;
 
-	i = 0;
+	i = 1;
 	while (line[i] && line[i] != c)
 		i++;
 	if (line[i] != c)
 	{
-		write(2, "Error at quotes", 19);
+		write(2, "Error at quotes\n", 17);
 		*flag = 0;
 		return (0);
 	}
 	if (i)
 		add_tolast_node(token, new_token_node(ft_substr(line, 0, i + 1)));
-	return (i++);
+	return (i + 1);
 }
 // we check for quotes at the start, then we check for operators
 // and we skip spaces , checking for operators aswell,

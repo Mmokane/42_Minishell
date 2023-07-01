@@ -7,3 +7,6 @@ can recall ls using arrow ? .
 < > << >> .
 *Should implement pipes .
 *Handle env variables.
+
+handle the expand .
+herdoc .

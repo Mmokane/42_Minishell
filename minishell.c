@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 18:44:34 by mmokane           #+#    #+#             */
-/*   Updated: 2023/06/30 14:10:46 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/01 11:07:04 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ int main(int ac, char **av)
 	while (1)
 	{
 		input = readline("minishell:");
-		// if (!input)
-		// 	exit(EXIT_FAILURE);
-		// if (ft_strlen(input) != 0)
-		// 	add_history(input);
+		if (!input)
+			exit(EXIT_FAILURE);
+		if (ft_strlen(input) != 0)
+			add_history(input);
 		if(get_check_token(input, &tokens) == 1)
 		{
 			check_tokens(tokens);	
