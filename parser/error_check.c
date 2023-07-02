@@ -1,36 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   error_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/14 02:29:13 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/02 16:17:04 by mmokane          ###   ########.fr       */
+/*   Created: 2023/07/02 16:17:31 by mmokane           #+#    #+#             */
+/*   Updated: 2023/07/02 16:28:49 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-
-
-int	get_check_token(char *input, t_token **token)
+int	format_erorr(t_token *token, t_token *tmp, int condition)
 {
-	int	i;
-	int	flag;
-
-	i = 0;
-	flag = 1;
-	while (input[i])
+	if (condition)
 	{
-		i += get_operator(input + i, token);
-		i += get_word(input + i, token, &flag);
-		if (!flag)
-		{
-			clear_token(token);
-			write(2, "Token input error", 16);
-			return (0);
-		}
+		if (tmp->type == PIPE && 
 	}
-	return (1);
 }
