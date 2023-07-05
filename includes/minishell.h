@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 18:44:59 by mmokane           #+#    #+#             */
-/*   Updated: 2023/06/30 11:25:11 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/05 02:26:43 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef struct s_env
 }			t_env;
 
 void	arg_checker(int ac, t_env **env_v2, char **env);
-void	*env_parsing(t_env **env_v2, char **env);
+void	*env_parsing(char **env, t_env **env_v2);
 int		get_check_token(char *line, t_token **token);
 int		token_type(char *content);
 int 	operator_type(char *content);
@@ -68,7 +68,7 @@ t_token *last_token_node(t_token *list);
 void	add_tolast_node(t_token **list, t_token *new_token);
 void	clear_token(t_token **list);
 
-void	check_tokens(t_token *token);
+void	check_tokens(t_env *env);
 
 
 #endif

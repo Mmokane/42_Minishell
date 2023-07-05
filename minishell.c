@@ -6,28 +6,28 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 18:44:34 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/01 11:07:04 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/05 02:34:17 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/minishell.h"
 
-void	check_tokens(t_token *token)
+void	check_tokens(t_env *env)
 {
-	t_token	*tmp;
+	t_env	*tmp;
 
-	tmp = token;
+	tmp = env;
 	printf("--------CHECK_TOKENS-----------\n");
 	while (tmp)
 	{
-		printf("content = %s\n", tmp->content);
-		printf("type    = %d\n", tmp->type);
+		printf("content = %s\n", tmp->keyword);
+		printf("type    = %s\n", tmp->value);
 		tmp = tmp->next;
 	}
 	printf("----------------------------\n");
 }
 
-int main(int ac, char **av)
+int main(int ac, char **av, char **env)
 {
 	(void)ac;
 	(void)av;
@@ -50,9 +50,12 @@ int main(int ac, char **av)
 			exit(EXIT_FAILURE);
 		if (ft_strlen(input) != 0)
 			add_history(input);
+		// add exit status.
+		arg_checker(ac, &env_v2, env);
+		check_tokens(env_v2);
 		if(get_check_token(input, &tokens) == 1)
 		{
-			check_tokens(tokens);	
+			check_tokens(env_v2);	
 			clear_token(&tokens);
 		}
 	}

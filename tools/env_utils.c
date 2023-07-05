@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 01:03:54 by mmokane           #+#    #+#             */
-/*   Updated: 2023/06/26 06:01:07 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/05 02:36:23 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	add_tolast_env(t_env **list, t_env *new_node)
 {
 	t_env *last;
 
-	if (!list)
+	if (!*list)// same mistake here XD
 	{
 		*list = new_node;
 		return ;
