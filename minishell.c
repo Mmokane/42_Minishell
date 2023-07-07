@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 18:44:34 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/05 02:34:17 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/07 01:06:39 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	check_tokens(t_env *env)
 	printf("--------CHECK_TOKENS-----------\n");
 	while (tmp)
 	{
-		printf("content = %s\n", tmp->keyword);
-		printf("type    = %s\n", tmp->value);
+		printf("%s=", tmp->keyword);
+		printf("%s\n", tmp->value);
 		tmp = tmp->next;
 	}
 	printf("----------------------------\n");
@@ -52,7 +52,7 @@ int main(int ac, char **av, char **env)
 			add_history(input);
 		// add exit status.
 		arg_checker(ac, &env_v2, env);
-		check_tokens(env_v2);
+		//check_tokens(env_v2);
 		if(get_check_token(input, &tokens) == 1)
 		{
 			check_tokens(env_v2);	
