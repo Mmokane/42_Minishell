@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+  /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   tokens_utils.c                                     :+:      :+:    :+:   */
@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 01:56:33 by mmokane           #+#    #+#             */
-/*   Updated: 2023/06/30 14:06:48 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/09 03:30:53 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ t_token *new_token_node(char * content)
 		return (NULL);
 	new_token->content = content;
 	new_token->type = token_type(content);// create it;
-	new_token->expand = 0;
 	new_token->next = NULL;
 	return (new_token);
 }

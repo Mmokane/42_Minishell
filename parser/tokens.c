@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 22:14:54 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/01 10:36:44 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/09 03:05:40 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	quotes_cheker(char *line, t_token **token, int c, int *flag)
 		i++;
 	if (line[i] != c)
 	{
-		write(2, "Error at quotes\n", 17);
+		write(2, "Error at quotes\n", 17);// give it 127 
 		*flag = 0;
 		return (0);
 	}

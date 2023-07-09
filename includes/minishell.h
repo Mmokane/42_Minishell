@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 18:44:59 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/05 02:26:43 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/09 03:29:49 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ typedef struct s_token
 {
 	int				type;
 	char			*content;
-	int				expand;
 	struct s_token *next;	
 }		t_token;
 
@@ -68,7 +67,7 @@ t_token *last_token_node(t_token *list);
 void	add_tolast_node(t_token **list, t_token *new_token);
 void	clear_token(t_token **list);
 
-void	check_tokens(t_env *env);
+void	check_tokens(t_token *token);
 
 
 #endif

@@ -6,16 +6,22 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 16:17:31 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/02 16:28:49 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/09 03:11:45 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	format_erorr(t_token *token, t_token *tmp, int condition)
+int syntax_checker(t_token *token)
 {
-	if (condition)
+	t_token *tmp;
+
+	tmp = NULL;
+	if (token)
 	{
-		if (tmp->type == PIPE && 
+		if (token->type == PIPE)
+			ft_putendl_fd("syntax error near unexpected token `|'", 2);
+		if (!token->next && token->next == OPERATOR)
+			ft_putendl_fd("syntax error near unexpected token `newline'", 2);
 	}
 }

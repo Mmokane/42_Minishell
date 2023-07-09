@@ -6,22 +6,22 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 18:44:34 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/07 01:06:39 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/09 03:29:32 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/minishell.h"
 
-void	check_tokens(t_env *env)
+void	check_tokens(t_token *token)
 {
-	t_env	*tmp;
+	t_token	*tmp;
 
-	tmp = env;
+	tmp = token;
 	printf("--------CHECK_TOKENS-----------\n");
 	while (tmp)
 	{
-		printf("%s=", tmp->keyword);
-		printf("%s\n", tmp->value);
+		printf("%s=", tmp->content);
+		printf("%d\n", tmp->type);
 		tmp = tmp->next;
 	}
 	printf("----------------------------\n");
@@ -39,8 +39,8 @@ int main(int ac, char **av, char **env)
 	tokens = NULL;
 	if (ac != 1)
 	{
-		write(2, "minishell :", 12);
-		write(2, "no such file or directory\n", 28);
+		write(2, "minishell : ", 13);
+		write(2, "no such file or directory\n", 27);
 		exit(1);
 	}
 	while (1)
@@ -55,8 +55,67 @@ int main(int ac, char **av, char **env)
 		//check_tokens(env_v2);
 		if(get_check_token(input, &tokens) == 1)
 		{
-			check_tokens(env_v2);	
+			check_tokens(tokens);	
 			clear_token(&tokens);
 		}
 	}
 }
+
+// int	check_syntax(t_token *token)
+// {
+// 	t_token	*tmp;
+
+// 	tmp = NULL;
+// 	if (token && token->type == PIPE)
+// 		return (ft_putendl_fd_2("syntax error near unexpected token", "|", 2));
+// 	if (token && !token->next
+// 		&& (token->type == OPERATOR || token->type == PIPE))
+// 		return (ft_putendl_fd_2("syntax error near unexpected token",
+// 				"newline", 2));
+// 	while (token)
+// 	{
+// 		if (token->check == 1)
+// 			return (ft_putendl_fd_2("ambiguous redirect", NULL, 2));
+// 		if ((!ft_strcmp(token->content, "&&")
+// 				|| !ft_strcmp(token->content, "&"))
+// 			&& token->type == WORD)
+// 			return (ft_putendl_fd_2("syntax error asat", "haha", 2));
+// 		if (tmp && !find_error(token, tmp))
+// 			return (0);
+// 		tmp = token;
+// 		token = token->next;
+// 	}
+// 	if (tmp && (tmp->type == OPERATOR || tmp->type == PIPE))
+// 		return (ft_putendl_fd_2("syntax error near unexpected token",
+// 				"newline", 2));
+// 	return (1);
+// }
+
+// int	ft_putendl_fd_2(char *s, char *str, int fd)
+// {
+// 	if (!s)
+// 	{
+// 		write (fd, "\n", 1);
+// 		return (0);
+// 	}
+// 	if (str && *str == '/')
+// 		str++;
+// 	while (*s)
+// 	{
+// 		write (fd, s, 1);
+// 		s++;
+// 	}
+// 	if (str)
+// 	{
+// 		write(fd, "`", 1);
+// 		while (*str)
+// 		{
+// 			write (fd, str, 1);
+// 			str++;
+// 		}
+// 		write(fd, "\'", 1);
+// 	}
+// 	write (fd, "\n", 1);
+// 	g_exec.g_exit_status = 258;
+// 	return (0);
+// }
