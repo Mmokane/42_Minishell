@@ -7,10 +7,11 @@ parsing :
 li fhmt : lexer hwa whd tool li ktakhd lina l input mn terminal o ktrj3o tokens, y3ni words with meaning, like n3tiwha 'hey' , ayrj3 lina ' then hey then '.
 
 
+kshni nsali expand dzp 3ad nzid 
 parts : lexer / is doone;
 		tokens; / are done;
 		expand;
-		parse;
+		parse; / syntax errors ...
 		signals;
 		norminette;
 

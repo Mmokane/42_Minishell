@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmokane <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 18:29:13 by mmokane           #+#    #+#             */
-/*   Updated: 2022/10/26 18:29:15 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/11 04:38:32 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,3 +25,10 @@ char	*ft_strtrim(char const *s1, char const *set)
 		size_s1--;
 	return (ft_substr((char *)s1, 0, size_s1 + 1));
 }
+
+// int main()
+// {
+// 	char s1[] = "\"loubna\"";
+// 	char s2[] = "\"";
+// 	printf("%s\n", ft_strtrim(s1, s2));
+// }

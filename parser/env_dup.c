@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+ /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   env_dup.c                                          :+:      :+:    :+:   */
@@ -40,7 +40,7 @@ void	*env_parsing(char **env, t_env **env_v2)
 			if ((*env)[i] == c)
 			{
 				add_tolast_env(env_v2, new_env_node(ft_substr(*env, 0, i),
-					ft_substr(*env, i + 1, ft_strlen(*env) -i), 1));
+					ft_substr(*env, i + 1, ft_strlen(*env) - i), 1));
 				break ;
 			}
 			i++;
@@ -49,6 +49,3 @@ void	*env_parsing(char **env, t_env **env_v2)
 	}
 	return (env_v2);
 }
-
-
-
