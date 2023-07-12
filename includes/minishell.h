@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 18:44:59 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/09 04:26:30 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/12 08:11:37 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,17 @@ typedef struct s_token
 {
 	int				type;
 	char			*content;
+	int				expanded;
 	struct s_token *next;	
 }		t_token;
+
+typedef struct s_redi
+{
+	int				type;
+	char			*file;
+	int				must_exp;
+	struct s_redi	*next;
+}					t_redi;
 
 typedef struct s_env
 {

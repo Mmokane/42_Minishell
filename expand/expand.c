@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 03:13:27 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/11 04:50:36 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/12 07:33:57 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@ void	expander(t_token **token, t_env *env, t_token *joiner)
 	
 	tmp = NULL;
 	quotes_triming(*token);
+	while(joiner)
+	{
+		expand_check(joiner, env);
+	}
 }
 void	handler_expand(t_token **token, t_env *env, t_token *tok)
 {
@@ -41,3 +45,5 @@ void	handler_expand(t_token **token, t_env *env, t_token *tok)
 		}
 	}
 }
+
+
