@@ -10,3 +10,9 @@ can recall ls using arrow ? .
 
 handle the expand .
 herdoc .
+
+
+expand : 
+
+		trim_quotes;
+		cat << $USER, ignore herdoc expand,

@@ -6,23 +6,20 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 18:44:34 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/09 22:48:41 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/13 06:19:33 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/minishell.h"
 
-void	check_tokens(t_env *env)
+void	check_tokens(t_token *token)
 {
-	t_env	*tmp;
-
-	tmp = env;
 	printf("--------CHECK_TOKENS-----------\n");
-	while (tmp)
+	while (token)
 	{
-		printf("%s=", tmp->keyword);
-		printf("%s\n", tmp->value);
-		tmp = tmp->next;
+		printf("content : |%s|\n", token->content);
+		printf("type : %d\n", token->type);
+		token = token->next;
 	}
 	printf("----------------------------\n");
 }
@@ -55,7 +52,8 @@ int main(int ac, char **av, char **env)
 		//check_tokens(env_v2);
 		if(get_check_token(input, &tokens) == 1)
 		{
-			check_tokens(env_v2);	
+			// expand()
+			check_tokens(tokens);	
 			clear_token(&tokens);
 		}
 	}
