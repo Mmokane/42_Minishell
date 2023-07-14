@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 18:44:34 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/13 06:19:33 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/14 06:17:00 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,68 +52,9 @@ int main(int ac, char **av, char **env)
 		//check_tokens(env_v2);
 		if(get_check_token(input, &tokens) == 1)
 		{
-			// expand()
+			quotes_triming(tokens);
 			check_tokens(tokens);	
 			clear_token(&tokens);
 		}
 	}
 }
-
-// int	check_syntax(t_token *token)
-// {
-// 	t_token	*tmp;
-
-// 	tmp = NULL;
-// 	if (token && token->type == PIPE)
-// 		return (ft_putendl_fd_2("syntax error near unexpected token", "|", 2));
-// 	if (token && !token->next
-// 		&& (token->type == OPERATOR || token->type == PIPE))
-// 		return (ft_putendl_fd_2("syntax error near unexpected token",
-// 				"newline", 2));
-// 	while (token)
-// 	{
-// 		if (token->check == 1)
-// 			return (ft_putendl_fd_2("ambiguous redirect", NULL, 2));
-// 		if ((!ft_strcmp(token->content, "&&")
-// 				|| !ft_strcmp(token->content, "&"))
-// 			&& token->type == WORD)
-// 			return (ft_putendl_fd_2("syntax error asat", "haha", 2));
-// 		if (tmp && !find_error(token, tmp))
-// 			return (0);
-// 		tmp = token;
-// 		token = token->next;
-// 	}
-// 	if (tmp && (tmp->type == OPERATOR || tmp->type == PIPE))
-// 		return (ft_putendl_fd_2("syntax error near unexpected token",
-// 				"newline", 2));
-// 	return (1);
-// }
-
-// int	ft_putendl_fd_2(char *s, char *str, int fd)
-// {
-// 	if (!s)
-// 	{
-// 		write (fd, "\n", 1);
-// 		return (0);
-// 	}
-// 	if (str && *str == '/')
-// 		str++;
-// 	while (*s)
-// 	{
-// 		write (fd, s, 1);
-// 		s++;
-// 	}
-// 	if (str)
-// 	{
-// 		write(fd, "`", 1);
-// 		while (*str)
-// 		{
-// 			write (fd, str, 1);
-// 			str++;
-// 		}
-// 		write(fd, "\'", 1);
-// 	}
-// 	write (fd, "\n", 1);
-// 	g_exec.g_exit_status = 258;
-// 	return (0);
-// }
