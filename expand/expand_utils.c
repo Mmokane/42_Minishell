@@ -6,16 +6,12 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 05:48:04 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/15 05:34:59 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/15 06:23:01 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	expand_type(t_token *token)
-{
-	
-}
 void	quotes_triming(t_token *token)
 {
 	char *tmp;
@@ -37,6 +33,13 @@ void	quotes_triming(t_token *token)
 	}
 }
 
+void	expand_type(t_token *token)
+{
+	if (token->type == WORD)
+		token->type == OUT_EXP;
+	else
+		token->type = SINGLE;
+}
 void	expand_v2(t_token *token)
 {
 	while (token)	
