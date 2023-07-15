@@ -6,12 +6,16 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 05:48:04 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/14 06:42:49 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/15 05:34:59 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
+void	expand_type(t_token *token)
+{
+	
+}
 void	quotes_triming(t_token *token)
 {
 	char *tmp;
@@ -32,29 +36,30 @@ void	quotes_triming(t_token *token)
 		token = token->next;
 	}
 }
-// void	here_doc_exp(t_token *token)
-// {
-// 	while (token)
-// 	{
-// 		if (*token->content == '$' && ft_strlen(token->content) == 1)
-// 		{
-// 			if (token->next && (token->next->type == DOUBLE
-// 					|| token->next->type == SINGLE))
-// 				token->content = ft_strdup("");
-// 		}
-// 		else if (ft_strlen(token->content) == 2 && token->type == OPERATOR
-// 			&& ft_strcmp(token->content, "<<") == 0)
-// 		{
-// 			if (token->next && token->next->type == SPACE)
-// 			{
-// 				if (token->next->next && token->next->next->type != PIPE
-// 					&& token->next->next->type != OPERATOR)
-// 					set_type(token->next->next);
-// 			}
-// 			else if (token->next && token->next->type != PIPE
-// 				&& token->next->type != OPERATOR)
-// 				set_type(token->next);
-// 		}
-// 		token = token->next;
-// 	}
-// }
+
+void	expand_v2(t_token *token)
+{
+	while (token)	
+	{
+		if (*token->content == '$')
+		{
+			if (token->next && (token->next->type == DOUBLE
+				|| token->next->type == SINGLE))
+			token->content = ft_strdup(""); // we are deleting the $ ig
+		}
+		else if (ft_strlen(token->content) == 2 && token->type == OPERATOR
+			&& ft_strcmp(token->content, "<<") == 0)
+		{
+			if (token->next && token->next->type != PIPE && token
+				&& token->next->type != OPERATOR)
+				expand_type(token->next);
+			else if (token->next && token->next->next->type == SPACE)
+			{
+				if (token->next->next && token->next->next->type != PIPE
+					&& token->next->next->type != OPERATOR)
+					expand_type(token->next->next);
+			}
+		}
+		token = token->next;
+	}
+}

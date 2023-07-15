@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 22:14:54 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/09 03:05:40 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/15 05:26:13 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ int	token_type(char *content)
 		return (OPERATOR);
 	if (*content == ' ')
 		return (SPACE);
-	if (*content == '~')
-		return (HYPHEN);
 	if (*content == '\'')
 		return (SINGLE);
 	else 
