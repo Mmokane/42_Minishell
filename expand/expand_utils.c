@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 05:48:04 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/16 04:44:21 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/16 22:10:01 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,11 @@ void	heredoc_expand(t_token *token)
 {
 	while (token)	
 	{
-		printf("type : %d\n", token->type);
 		if (*token->content == '$')
 		{
 			if (token->next && (token->next->type == DOUBLE
 				|| token->next->type == SINGLE))
-			token->content = ft_strdup(""); // we are deleting the $
+					token->content = ft_strdup(""); // we are deleting the $
 		}
 		else if (ft_strlen(token->content) == 2 && token->type == OPERATOR
 			&& ft_strcmp(token->content, "<<"))
