@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 18:44:59 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/15 05:03:04 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/16 03:46:16 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ enum {
 	DOUBLE,
 	OPERATOR,
 	SPACE,
-	OUT_EXP,
+	INSIDE_EXP,
 	SINGLE,
 	WORD,
 };
@@ -75,6 +75,9 @@ t_token *last_token_node(t_token *list);
 void	add_tolast_node(t_token **list, t_token *new_token);
 void	clear_token(t_token **list);
 void	quotes_triming(t_token *token);
+void	expand_type(t_token *token);
+void	heredoc_expand(t_token *token);
+void	expander(t_token **tokens, t_env *env, t_token *token);
 
 void	check_tokens(t_token *token);
 

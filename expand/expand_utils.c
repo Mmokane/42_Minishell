@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 05:48:04 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/15 06:23:01 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/16 04:44:21 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,33 +36,35 @@ void	quotes_triming(t_token *token)
 void	expand_type(t_token *token)
 {
 	if (token->type == WORD)
-		token->type == OUT_EXP;
+		token->type = INSIDE_EXP;
 	else
 		token->type = SINGLE;
 }
-void	expand_v2(t_token *token)
+void	heredoc_expand(t_token *token)
 {
 	while (token)	
 	{
+		printf("type : %d\n", token->type);
 		if (*token->content == '$')
 		{
 			if (token->next && (token->next->type == DOUBLE
 				|| token->next->type == SINGLE))
-			token->content = ft_strdup(""); // we are deleting the $ ig
+			token->content = ft_strdup(""); // we are deleting the $
 		}
 		else if (ft_strlen(token->content) == 2 && token->type == OPERATOR
-			&& ft_strcmp(token->content, "<<") == 0)
+			&& ft_strcmp(token->content, "<<"))
 		{
-			if (token->next && token->next->type != PIPE && token
-				&& token->next->type != OPERATOR)
-				expand_type(token->next);
-			else if (token->next && token->next->next->type == SPACE)
+			if (token->next && token->next->type == SPACE)
 			{
 				if (token->next->next && token->next->next->type != PIPE
 					&& token->next->next->type != OPERATOR)
-					expand_type(token->next->next);
+						expand_type(token->next->next);
 			}
+			else if (token->next && token->next->type != PIPE
+				&& token->next->type != OPERATOR)
+						expand_type(token->next);
 		}
 		token = token->next;
 	}
 }
+

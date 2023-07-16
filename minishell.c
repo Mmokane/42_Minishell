@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 18:44:34 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/14 06:17:00 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/16 04:11:59 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,11 @@ void	check_tokens(t_token *token)
 		token = token->next;
 	}
 	printf("----------------------------\n");
+}
+
+void	ft_minishell(t_env **env, t_token **tokens)
+{
+	expander(tokens, *env, *tokens);
 }
 
 int main(int ac, char **av, char **env)
@@ -52,8 +57,8 @@ int main(int ac, char **av, char **env)
 		//check_tokens(env_v2);
 		if(get_check_token(input, &tokens) == 1)
 		{
-			quotes_triming(tokens);
-			check_tokens(tokens);	
+			ft_minishell(&env_v2, &tokens);
+		//	check_tokens(tokens);	
 			clear_token(&tokens);
 		}
 	}

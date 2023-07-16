@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmokane <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 14:30:20 by mmokane           #+#    #+#             */
-/*   Updated: 2022/11/01 14:37:48 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/16 00:44:20 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,3 @@ void	ft_putnbr_fd(int n, int fd)
 		ft_putchar_fd(n + '0', fd);
 }
 
-// int main()
-// {
-// 	ft_putnbr_fd(-2147483648, 1);
-// }
