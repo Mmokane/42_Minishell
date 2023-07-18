@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 05:48:04 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/18 07:22:11 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/18 08:19:17 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,14 @@ void	quotes_triming(t_token *token)
 		}
 		token = token->next;
 	}
+}
+int	exp_here(int curr, int next)
+{
+	if (curr == '$' && next == '?') // this will give us the exit status
+		return (1);
+	if (curr == '$' && !must_expand(next)) // this will check for the $ or other nums
+		return (1);
+	return (0);
 }
 
 void	expand_check(t_token *token, t_env *env)
