@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 05:48:04 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/18 03:52:46 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/18 07:22:11 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,34 @@ void	heredoc_expand(t_token *token)
 		token = token->next;
 	}
 }
-void	variable_expander()
+void	expand_var(t_env *env, char **content)
+{
+	char *str;
+	char *str1;
+	char *join;
+	char *last_str;
+	int i;
+	int j;
+	char *prev;
+
+	str = NULL;
+	str1 = NULL;
+	join = NULL;
+	last_str = NULL;
+	i = 0;
+	prev = *content;
+	while (prev[i] && !exp_here(prev[i],prev[i + 1]))
+		i++;
+	if (!prev[i] || !prev[i + 1])
+		return ;
+	if (i)
+		str = ft_substr(prev, 0, i);
+	j = i + 1 + count(prev + i + 1);
+	str1 = get_value_of_exp(env, ft_substr(prev, i + 1, j - i - 1));
+	join = ft_strjoin(str, str1);
+	if (ft_strlen(prev + j))
+		last_str = ft_substr(prev, j, ft_strlen(prev + j));
+	*content = ft_strjoin(join, last_str);
+	ft_free_2(last_str, prev, str1);
+	expand_var(env, content);
+}
