@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 05:48:04 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/18 08:19:17 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/19 02:39:48 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,6 @@ void	quotes_triming(t_token *token)
 		}
 		token = token->next;
 	}
-}
-int	exp_here(int curr, int next)
-{
-	if (curr == '$' && next == '?') // this will give us the exit status
-		return (1);
-	if (curr == '$' && !must_expand(next)) // this will check for the $ or other nums
-		return (1);
-	return (0);
 }
 
 void	expand_check(t_token *token, t_env *env)
@@ -65,7 +57,7 @@ void	heredoc_expand(t_token *token)
 {
 	while (token)	
 	{
-		if (*token->content == '$')
+		if (*token->content == '$' && ft_strlen(token->content) == 1)
 		{
 			if (token->next && (token->next->type == DOUBLE
 				|| token->next->type == SINGLE))
@@ -90,7 +82,7 @@ void	heredoc_expand(t_token *token)
 void	expand_var(t_env *env, char **content)
 {
 	char *str;
-	char *str1;
+	char *str2;
 	char *join;
 	char *last_str;
 	int i;
@@ -98,23 +90,33 @@ void	expand_var(t_env *env, char **content)
 	char *prev;
 
 	str = NULL;
-	str1 = NULL;
+	str2 = NULL;
 	join = NULL;
 	last_str = NULL;
 	i = 0;
 	prev = *content;
-	while (prev[i] && !exp_here(prev[i],prev[i + 1]))
+	while (prev[i] && !active_expand(prev[i],prev[i + 1]))
 		i++;
 	if (!prev[i] || !prev[i + 1])
 		return ;
 	if (i)
 		str = ft_substr(prev, 0, i);
 	j = i + 1 + count(prev + i + 1);
-	str1 = get_value_of_exp(env, ft_substr(prev, i + 1, j - i - 1));
-	join = ft_strjoin(str, str1);
+	str2 = variable_value(env, ft_substr(prev, i + 1, j - i - 1));
+	join = ft_strjoin(str, str2);
 	if (ft_strlen(prev + j))
 		last_str = ft_substr(prev, j, ft_strlen(prev + j));
 	*content = ft_strjoin(join, last_str);
-	ft_free_2(last_str, prev, str1);
+	ft_free_2(last_str, prev, str2);
 	expand_var(env, content);
 }
+
+int	acive_expand(int curr, int next)
+{
+	if (curr == '$' && next == '?')
+		return (1);
+	if (curr == '$' && (!(!ft_isalnum(next) && next != '_')))
+		return (1);
+	return (0);
+}
+

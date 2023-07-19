@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 06:11:54 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/18 07:29:36 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/18 23:58:47 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,4 @@ void	expander(t_token **tokens, t_env *env, t_token *token)
 	// 		token = token->next;
 	// 	}
 	// }
-}
+}++
