@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 18:44:34 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/20 06:11:11 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/20 09:03:24 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,11 @@ void	check_tokens(t_token *token)
 	printf("----------------------------\n");
 }
 
-void	ft_minishell(t_env **env, t_token **tokens)
+void	minishell(t_env **env, t_token **tokens)
 {
 	expander(tokens, *env, *tokens);
 	space_remover(tokens, *tokens);
+	// well start parsing commands here .
 }
 
 int main(int ac, char **av, char **env)
@@ -59,7 +60,7 @@ int main(int ac, char **av, char **env)
 		if(get_check_token(input, &tokens) == 1)
 		{
 			
-			ft_minishell(&env_v2, &tokens);
+			minishell(&env_v2, &tokens);
 			check_tokens(tokens);	
 			clear_token(&tokens);
 		}
