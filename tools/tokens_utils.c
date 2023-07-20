@@ -46,6 +46,16 @@ void add_tolast_node(t_token **list, t_token *new_token)
 	last = last_token_node(*list);
 	last->next = new_token;
 }
+
+void	clear(t_token *list)
+{
+	if (list)
+	{
+		if (list->content)
+			free(list->content);
+		free(list);
+	}
+}
 // clear nodes one by one after freeing it
 void	clear_token(t_token **list)
 {
@@ -65,3 +75,10 @@ void	clear_token(t_token **list)
 	}
 	*list = NULL ;
 }
+
+// if (lst)
+// 	{
+// 		if (lst->content)
+// 			free(lst->content);
+// 		free(lst);
+// 	}

@@ -6,26 +6,41 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 00:15:40 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/19 02:33:37 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/20 06:23:16 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
+int	acive_expand(int curr, int next)
+{
+	if (curr == '$' && (!(!ft_isalnum(next) && next != '_')
+			|| next == '?'))
+		return (1);
+	return (0);
+}
+
+void	free_str(char *str1, char *str2, char *str3)
+{
+	if (str1)
+		free(str1);
+	free(str2);
+	free(str3);
+}
+
 char	*variable_value(t_env *env, char *key)
 {
-	char	*s;
-
-	if (*key == '?')
-	{
-		free(key);
-		s = ft_itoa(g_exec.g_exit_status);
-		g_exec.g_exit_status = 0;
-		return (s);
-	}
-	while (env && ft_strcmp(env->key, key) != 0)
+	// char	*s;
+	// if (*key == '?')
+	// {
+	// 	free(key);
+	// 	s = ft_itoa(g_exec.g_exit_status);
+	// 	g_exec.g_exit_status = 0;
+	// 	return (s);
+	// }
+	while (env && ft_strcmp(env->keyword, key) != 0)
 		env = env->next;
-	if (env && ft_strcmp(env->key, key) == 0)
+	if (env && ft_strcmp(env->keyword, key) == 0)
 	{
 		free(key);
 		return (ft_strdup(env->value));
@@ -43,5 +58,6 @@ int	counter(char *str)
 		return (1);
 	while (str[i] && (!(!ft_isalnum(str[i]) && str[i] != '_')))
 		i++;
+	
 	return (i);
 }

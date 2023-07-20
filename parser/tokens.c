@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 22:14:54 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/16 04:44:30 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/20 05:24:37 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,6 @@ int	token_type(char *content)
 	if (!ft_strncmp(content, ">>", 2) 
 		|| !ft_strncmp(content, "<<", 2))
 		return (OPERATOR);
-	// if (content[0] && content[1] && !ft_strncmp(content, "<<", 2))
-	// 	return (OPERATOR);
-	// if (content[0] && content[1] && !ft_strncmp(content, ">>", 2))
-	// 	return (OPERATOR);
 	if (*content == '>' || *content == '<')
 		return (OPERATOR);
 	if (*content == ' ')
