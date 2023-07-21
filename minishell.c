@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 18:44:34 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/20 09:03:24 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/21 01:39:07 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int main(int ac, char **av, char **env)
 			minishell(&env_v2, &tokens);
 			check_tokens(tokens);	
 			clear_token(&tokens);
+			system("leaks minishell");
 		}
 	}
 }
