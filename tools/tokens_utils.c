@@ -85,8 +85,8 @@ int	join_str(t_token **token, t_token *tmp)
 	{
 		tmp->content = ft_strjoin(tmp->content, (*token)->content);
 		tmp->next = (*token)->next;
-		clear(*token);
-		clear_token(token);
+		// clear(*token);
+		// clear_token(token);
 		*token = tmp->next;
 		return (1);
 	}

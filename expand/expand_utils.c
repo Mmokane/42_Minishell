@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 05:48:04 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/21 02:28:51 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/21 04:07:49 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,6 @@ void	variable_expander(t_env *env, char **content)
 	if (ft_strlen(exp.prev + j))
 		exp.last_str = ft_substr(exp.prev, j,
 				ft_strlen(exp.prev + j));
-	printf("prev: %s", exp.prev);
 	*content = ft_strjoin(exp.join, exp.last_str);
 	free_str(exp.last_str, exp.prev, exp.str2);
 	variable_expander(env, content);

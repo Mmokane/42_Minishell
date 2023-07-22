@@ -6,35 +6,12 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 18:28:40 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/20 06:38:02 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/21 04:07:25 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-// char	*ft_strjoin(char const *s1, char const *s2)
-// {
-// 	char	*resulttab;
-// 	size_t	size;
-// 	size_t	i;
-// 	size_t	j;
-
-// 	if (!s1)
-// 		return (NULL);
-// 	size = ft_strlen(s1) + ft_strlen(s2);
-// 	resulttab = malloc(sizeof(char) * (size + 1));
-// 	if (!resulttab)
-// 		return (NULL);
-// 	i = 0;
-// 	j = 0;
-// 	while (s1[j])
-// 		resulttab[i++] = s1[j++];
-// 	j = 0;
-// 	while (s2[j])
-// 		resulttab[i++] = s2[j++];
-// 	resulttab[i] = '\0';
-// 	return (resulttab);
-// }
 static	char	*ft_free(char *p)
 {
 	free(p);
@@ -66,5 +43,6 @@ char	*ft_strjoin(char *old_str, char *current_str)
 	free(old_str);
 	return (new_str);
 }
+
 
 
