@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 00:15:40 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/20 06:23:16 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/23 01:23:07 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,22 @@ int	counter(char *str)
 		i++;
 	
 	return (i);
+}
+
+
+
+int	words_joiners(t_token **token, t_token *tmp)
+{
+	if ((*token)->type == PIPE || (*token)->type == OPERATOR
+		|| (*token)->type == SPACE || !tmp || tmp->type == PIPE
+			|| tmp->type == OPERATOR || tmp->type == SPACE)
+			return (1);
+	else
+		{
+			tmp->content = ft_strjoin(tmp->content, (*token)->content);
+			tmp->next = (*token)->next;
+			clear(*token);
+			*token = tmp->next;
+			return (0);
+		}
 }

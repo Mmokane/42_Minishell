@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 18:44:59 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/21 02:24:24 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/23 00:32:29 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void	quotes_triming(t_token *token);
 void	expand_type(t_token *token);
 void	heredoc_expand(t_token *token);
 void	expander(t_token **tokens, t_env *env, t_token *token);
+// void	check_tokens(t_token *token);
 void	check_tokens(t_token *token);
 void	expand_check(t_token *token, t_env *env);
 int		acive_expand(int curr, int next);
@@ -97,6 +98,6 @@ void	space_remover(t_token **token, t_token *tok);
 void	ft_remove(t_token *tmp, t_token **curr, t_token **token);
 void	clear(t_token *list);
 
-int	join_str(t_token **token, t_token *tmp);
+int		words_joiners(t_token **token, t_token *tmp);
 
 #endif

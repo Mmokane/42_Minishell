@@ -73,21 +73,3 @@ void	clear_token(t_token **list)
 	}
 	*list = NULL ;
 }
-int	join_str(t_token **token, t_token *tmp)
-{
-	if ((*token)->type == PIPE || (*token)->type == OPERATOR
-		|| (*token)->type == SPACE)
-		return (0);
-	if (!tmp || tmp->type == PIPE || tmp->type == OPERATOR
-		|| tmp->type == SPACE)
-		return (0);
-	else
-	{
-		tmp->content = ft_strjoin(tmp->content, (*token)->content);
-		tmp->next = (*token)->next;
-		// clear(*token);
-		// clear_token(token);
-		*token = tmp->next;
-		return (1);
-	}
-}
