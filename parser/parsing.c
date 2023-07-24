@@ -32,3 +32,9 @@ int	get_check_token(char *input, t_token **token)
 	}
 	return (1);
 }
+
+void	cmd_init(t_token **token, t_cmd **cmd)
+{
+	add_tolast_cmdnode(cmd, new_cmd_node());
+	fill_cmd(last_cmd_node(*cmd));
+}

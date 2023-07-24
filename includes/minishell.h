@@ -70,8 +70,11 @@ typedef struct s_cmd
 	char	**cmd;
 	int		pipe;
 	int 	type;
-	
-}
+	int		error;
+	t_redi 	in;
+	t_redi	out;
+	struct s_cmd	*next;
+}			t_cmd;
 // typedef struct s_cmd
 // {
 // 	char			**cmd;
