@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 18:44:59 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/23 00:32:29 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/24 03:34:03 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,24 @@ typedef struct s_env
 	int				bolean;
 	struct s_env	*next;
 }			t_env;
+
+typedef struct s_cmd
+{
+	char	**cmd;
+	int		pipe;
+	int 	type;
+	
+}
+// typedef struct s_cmd
+// {
+// 	char			**cmd;
+// 	int				pipe;
+// 	int				err;
+// 	int				type;
+// 	t_redi			*in;
+// 	t_redi			*out;
+// 	struct s_cmd	*next;
+// }					t_cmd;
 
 void	arg_checker(int ac, t_env **env_v2, char **env);
 void	*env_parsing(char **env, t_env **env_v2);

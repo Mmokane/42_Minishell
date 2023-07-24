@@ -38,7 +38,7 @@ void add_tolast_node(t_token **list, t_token *new_token)
 {
 	t_token *last;
 
-	if (!*list)//
+	if (!(*list))//
 	{
 		*list = new_token;
 		return ;

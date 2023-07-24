@@ -6,13 +6,11 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 02:29:13 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/09 03:02:12 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/24 03:37:09 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-
 
 int	get_check_token(char *input, t_token **token)
 {
