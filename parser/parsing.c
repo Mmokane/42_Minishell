@@ -6,18 +6,45 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 02:29:13 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/25 05:21:22 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/25 07:06:14 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
+int	true_redir(t_token *token)
+{
+	int	len;
+
+	len = ft_strlen(token->content) - 1;
+	if (token->expanded)
+	{
+		if (ft_strrchr(token->content, ' ') && token->content[len] != ' ')
+		{
+			write(2, "error in redirection\n", 22);
+			// g_exec.g_exit_status = 1;
+			return (1);
+		}
+		if (!*(token->content))
+		{
+			write(2, "error in redirection\n", 22);
+			// g_exec.g_exit_status = 1;
+			return (1);
+		}
+	}
+	return (0);
+}
+
 void	cmd_init(t_token **token, t_cmd **cmd)
 {
 	add_tolast_cmdnode(cmd, new_cmd_node());
+	printf("hey1\n");
 	cmd_start(last_cmd_node(*cmd));
+	printf("hey2\n");
 	check_operator(*token, *cmd, token);
+	printf("hey3\n");
 	args_set(*token, last_cmd_node(*cmd));
+	printf("hey4\n");
 }
 
 void	cmd_parsing(t_token **token, t_cmd **cmd)
@@ -70,3 +97,6 @@ int	get_check_token(char *input, t_token **token)
 	}
 	return (1);
 }
+
+
+

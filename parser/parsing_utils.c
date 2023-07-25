@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 05:28:02 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/25 05:33:10 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/25 07:04:14 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ void    cmd_start(t_cmd *cmd)
     cmd->pipe = 0;
 }
 // might have a pblm here
-void    set_op(t_token **token, t_redi **redi, int type)
+void    set_op(t_token *token, t_redi **red, int type)
 {
     if (token)
-    	add_tolast_redi(redi, 
-            new_redir_node(ft_strdup(token->content), type);
+    	add_tolast_redi(red, 
+            new_redir_node(ft_strdup(token->content), type));
     if (token && type == heredoc && token->type == INSIDE_EXP)
-        last_redi_node(*redi)->must_exp = 1;
+        last_redi_node(*red)->must_exp = 1;
 }
 
 void    is_it_op(t_token *token, t_cmd *cmd)
@@ -41,12 +41,12 @@ void    is_it_op(t_token *token, t_cmd *cmd)
     }
         if (!ft_strcmp(token->content, ">>"))
             set_op(token->next, &cmd->out, append);
-        else if (!ft_strcmp(token->next, '>'))
+        else if (*(token->content) == '>')
             set_op(token->next, &cmd->out, out);
-        else if (!ft_strcmp(token->next, "<<"))
+        else if (!ft_strcmp(token->content, "<<"))
             set_op(token->next, &cmd->out, heredoc);
-        else if (!ft_strcmp(token->next, '<'))
-            set_op(token->next, &cmd->out, in)
+       else if (*(token->content) == '<')
+            set_op(token->next, &cmd->out, in);
 }
 void    check_operator(t_token *token, t_cmd *cmd,t_token **tok)
 {
@@ -93,7 +93,7 @@ void    args_set(t_token *token, t_cmd *cmd)
 
 void	cmd_builder(t_cmd *cmd, t_token *token, int *i)
 {
-	if (!token || token->type == SPACEE)
+	if (!token || token->type == SPACE)
 		return ;
 	if (token && !token->content)
 		return ;
@@ -109,3 +109,5 @@ void	cmd_builder(t_cmd *cmd, t_token *token, int *i)
 			cmd->pipe = 1;
 	}
 }
+
+

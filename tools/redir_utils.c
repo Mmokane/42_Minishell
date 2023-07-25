@@ -6,25 +6,25 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 04:07:08 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/25 05:32:00 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/25 06:43:08 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void    new_redir_node(char *out, int *type)
+t_redi    *new_redir_node(char *out, int type)
 {
     t_redi *tmp;
 
     tmp = malloc(sizeof(t_redi));
-    ptr->file = out;
-    ptr->type = type;
-    ptr->must_exp = 0;
-    ptr->next = NULL;
-    return (ptr);
+    tmp->file = out;
+    tmp->type = type;
+    tmp->must_exp = 0;
+    tmp->next = NULL;
+    return (tmp);
 }
 
-void    last_redi_node(t_redi *list)
+t_redi    *last_redi_node(t_redi *list)
 {
     if (!list)
         return (NULL);
@@ -37,10 +37,10 @@ void    add_tolast_redi(t_redi **list, t_redi *new)
 {
     t_redi *last;
 
-    last = *lst;
+    last = *list;
     if (!(*list))
     {
-        *lst = new;
+        *list = new;
         return ;
     }
     while (last->next)
@@ -63,5 +63,5 @@ void    redi_clear(t_redi **list)
         free(tmp);
         tmp = tmp2;
     }
-    *tmp = NULL;
+    *list = NULL;
 }

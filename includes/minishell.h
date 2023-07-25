@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 18:44:59 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/25 05:23:06 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/25 06:53:42 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,12 @@
 
 int	g_exit_status;
 
+enum {
+	heredoc,
+	in,
+	out,
+	append,
+};
 enum {
 	PIPE,
 	DOUBLE,
@@ -97,8 +103,6 @@ void	quotes_triming(t_token *token);
 void	expand_type(t_token *token);
 void	heredoc_expand(t_token *token);
 void	expander(t_token **tokens, t_env *env, t_token *token);
-// void	check_tokens(t_token *token);
-void	check_tokens(t_token *token);
 void	expand_check(t_token *token, t_env *env);
 int		acive_expand(int curr, int next);
 void	variable_expander(t_env *env, char **content);
@@ -111,7 +115,7 @@ void	clear(t_token *list);
 int		words_joiners(t_token **token, t_token *tmp);
 ///
 void    cmd_start(t_cmd *cmd);
-void    set_op(t_token **token, t_redi **redi, int type);
+void    set_op(t_token *token, t_redi **redi, int type);
 void    check_operator(t_token *token, t_cmd *cmd,t_token **tok);
 void    args_set(t_token *token, t_cmd *cmd);
 void	cmd_builder(t_cmd *cmd, t_token *token, int *i);
@@ -121,12 +125,14 @@ int		get_check_token(char *input, t_token **token);
 t_cmd	*new_cmd_node(void);
 t_cmd	*last_cmd_node(t_cmd *list);
 void	add_tolast_cmdnode(t_cmd **list, t_cmd *new);
-void    new_redir_node(char *out, int type);
-void    last_redi_node(t_redi *list);
+t_redi  *new_redir_node(char *out, int type);
+t_redi	*last_redi_node(t_redi *list);
 void    add_tolast_redi(t_redi **list, t_redi *new);
 void    redi_clear(t_redi **list);
 void	ft_free(char **str);
-int		ft_strchr_2(const char *str, int c);
 void	check_cmd(t_cmd *cmd);
+int		true_redir(t_token *token);
+void	cleaner(t_token *tmp, t_token **curr, t_token **token);
 
+void	check_tokens(t_cmd *cmd);
 #endif

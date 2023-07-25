@@ -6,7 +6,7 @@
 #    By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/21 18:40:29 by mmokane           #+#    #+#              #
-#    Updated: 2023/07/25 05:11:02 by mmokane          ###   ########.fr        #
+#    Updated: 2023/07/25 06:44:38 by mmokane          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,13 +16,13 @@ CC = cc
 
 CFLAGS = -Wall -Werror -Wextra 
 
-SRCS = parser/parsing.c parser/tokens.c \
+SRCS = parser/tokens.c \
 	   tools/env_utils.c  tools/tokens_utils.c \
 	   minishell.c parser/env_dup.c expand/expand_utils.c \
 	   expand/expand.c \
 	   expand/expand_utils2.c parser/space_remover.c \
 	   parser/parsing_utils.c parser/parsing.c \
-	   parser/parsing_utils2.c \
+	   tools/cmd_utils.c tools/redir_utils.c \
 	   
 OBJS = $(SRCS:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 03:30:07 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/25 05:14:47 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/25 06:35:35 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_cmd	*new_cmd_node(void)
 	new = (t_cmd *)malloc(sizeof(t_cmd));
 	if (!new)
 		return (NULL);
-	new->err = 0;
+	new->error = 0;
 	new->next = NULL;
 	return (new);
 }
@@ -38,9 +38,9 @@ void	add_tolast_cmdnode(t_cmd **list, t_cmd *new)
 	t_cmd	*last;
 
 	last = *list;
-	if (!(*lst))
+	if (!(*list))
 	{
-		*lst = new;
+		*list = new;
 		return ;
 	}
 	while (last->next)
