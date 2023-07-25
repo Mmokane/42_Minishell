@@ -12,6 +12,12 @@
 
 #include "../includes/minishell.h"
 
+void	cmd_parsing(t_token **token, t_cmd **cmd)
+{
+	
+}
+
+
 int	get_check_token(char *input, t_token **token)
 {
 	int	i;
