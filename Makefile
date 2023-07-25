@@ -6,7 +6,7 @@
 #    By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/21 18:40:29 by mmokane           #+#    #+#              #
-#    Updated: 2023/07/20 06:04:01 by mmokane          ###   ########.fr        #
+#    Updated: 2023/07/25 05:11:02 by mmokane          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,8 @@ SRCS = parser/parsing.c parser/tokens.c \
 	   minishell.c parser/env_dup.c expand/expand_utils.c \
 	   expand/expand.c \
 	   expand/expand_utils2.c parser/space_remover.c \
+	   parser/parsing_utils.c parser/parsing.c \
+	   parser/parsing_utils2.c \
 	   
 OBJS = $(SRCS:.c=.o)
 

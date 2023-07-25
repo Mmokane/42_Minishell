@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 18:44:59 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/24 03:34:03 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/25 05:23:06 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,20 +71,11 @@ typedef struct s_cmd
 	int		pipe;
 	int 	type;
 	int		error;
-	t_redi 	in;
-	t_redi	out;
+	t_redi 	*in;
+	t_redi	*out;
 	struct s_cmd	*next;
 }			t_cmd;
-// typedef struct s_cmd
-// {
-// 	char			**cmd;
-// 	int				pipe;
-// 	int				err;
-// 	int				type;
-// 	t_redi			*in;
-// 	t_redi			*out;
-// 	struct s_cmd	*next;
-// }					t_cmd;
+
 
 void	arg_checker(int ac, t_env **env_v2, char **env);
 void	*env_parsing(char **env, t_env **env_v2);
@@ -114,11 +105,28 @@ void	variable_expander(t_env *env, char **content);
 void	free_str(char *str1, char *str2, char *str3);
 char	*variable_value(t_env *env, char *key);
 int		counter(char *str);
-//
 void	space_remover(t_token **token, t_token *tok);
 void	ft_remove(t_token *tmp, t_token **curr, t_token **token);
 void	clear(t_token *list);
-
 int		words_joiners(t_token **token, t_token *tmp);
+///
+void    cmd_start(t_cmd *cmd);
+void    set_op(t_token **token, t_redi **redi, int type);
+void    check_operator(t_token *token, t_cmd *cmd,t_token **tok);
+void    args_set(t_token *token, t_cmd *cmd);
+void	cmd_builder(t_cmd *cmd, t_token *token, int *i);
+void	cmd_init(t_token **token, t_cmd **cmd);
+void	cmd_parsing(t_token **token, t_cmd **cmd);
+int		get_check_token(char *input, t_token **token);
+t_cmd	*new_cmd_node(void);
+t_cmd	*last_cmd_node(t_cmd *list);
+void	add_tolast_cmdnode(t_cmd **list, t_cmd *new);
+void    new_redir_node(char *out, int type);
+void    last_redi_node(t_redi *list);
+void    add_tolast_redi(t_redi **list, t_redi *new);
+void    redi_clear(t_redi **list);
+void	ft_free(char **str);
+int		ft_strchr_2(const char *str, int c);
+void	check_cmd(t_cmd *cmd);
 
 #endif

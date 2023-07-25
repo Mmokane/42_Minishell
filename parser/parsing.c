@@ -6,15 +6,47 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 02:29:13 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/24 03:37:09 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/25 05:21:22 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
+void	cmd_init(t_token **token, t_cmd **cmd)
+{
+	add_tolast_cmdnode(cmd, new_cmd_node());
+	cmd_start(last_cmd_node(*cmd));
+	check_operator(*token, *cmd, token);
+	args_set(*token, last_cmd_node(*cmd));
+}
+
 void	cmd_parsing(t_token **token, t_cmd **cmd)
 {
-	
+	t_token *tok1;
+	t_token *tok2;
+	int	i;
+	static int pipe;
+
+	cmd_init(token, cmd);
+	if (pipe && !last_cmd_node(*cmd)->in)
+		last_cmd_node(*cmd)->pipe = pipe--;
+	i = 0;
+	tok1 = *token;
+	while (tok1 && tok1->type != PIPE)
+	{
+		tok2 = tok1;
+		cmd_builder(last_cmd_node(*cmd), tok1, &i);
+		tok1 = tok1->next;
+		clear(tok2);
+	}
+	if (!tok1)
+		return ;
+	*token = tok1->next;
+	cmd_builder(last_cmd_node(*cmd), tok1, &i);
+	clear(tok1);
+	if (last_cmd_node(*cmd)->pipe)
+		pipe++;
+	return(cmd_parsing(token, cmd));
 }
 
 
@@ -37,10 +69,4 @@ int	get_check_token(char *input, t_token **token)
 		}
 	}
 	return (1);
-}
-
-void	cmd_init(t_token **token, t_cmd **cmd)
-{
-	add_tolast_cmdnode(cmd, new_cmd_node());
-	fill_cmd(last_cmd_node(*cmd));
 }

@@ -1,17 +1,26 @@
-// add header xd;
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing_utils.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/25 05:28:02 by mmokane           #+#    #+#             */
+/*   Updated: 2023/07/25 05:33:10 by mmokane          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "../includes/minishell.h"
 
-#include "../includes/minishel.h"
-
-void    fill_cmd(t_cmd *cmd)
+void    cmd_start(t_cmd *cmd)
 {
     cmd->cmd = NULL;
-    cmd->in - NULL;
+    cmd->in = NULL;
     cmd->out = NULL;
     cmd->pipe = 0;
 }
-
-void    set_op(t_token **token, t_redir **redi, int type)// might get a prblm here
+// might have a pblm here
+void    set_op(t_token **token, t_redi **redi, int type)
 {
     if (token)
     	add_tolast_redi(redi, 
@@ -80,4 +89,23 @@ void    args_set(t_token *token, t_cmd *cmd)
     if (!cmd->cmd)
         return ;
     cmd->cmd[--i] = NULL;
+}
+
+void	cmd_builder(t_cmd *cmd, t_token *token, int *i)
+{
+	if (!token || token->type == SPACEE)
+		return ;
+	if (token && !token->content)
+		return ;
+	if ((token->type == WORD || token->type == SINGLE
+			|| token->type == DOUBLE) && cmd->cmd)
+	{
+		cmd->cmd[(*i)++] = ft_strdup(token->content);
+		cmd->type = token->type;
+	}
+	else if (*(token->content) == '|')
+	{
+		if (token->next && token->next->content)
+			cmd->pipe = 1;
+	}
 }

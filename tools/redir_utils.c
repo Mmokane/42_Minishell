@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   redir_utils.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/25 04:07:08 by mmokane           #+#    #+#             */
+/*   Updated: 2023/07/25 05:32:00 by mmokane          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/minishell.h"
 
-void    new_redir_node(char *out, int type)
+void    new_redir_node(char *out, int *type)
 {
     t_redi *tmp;
 
