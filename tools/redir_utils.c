@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 04:07:08 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/25 06:43:08 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/25 23:36:32 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ void    redi_clear(t_redi **list)
     t_redi  *tmp;
     t_redi  *tmp2;
 
-    tmp = *list;//might cause a problem 
-    if (!tmp)
+    if (!list)
         return ;
+    tmp = *list;//might cause a problem 
     while (tmp)
     {
         tmp2 = tmp->next;
@@ -65,3 +65,21 @@ void    redi_clear(t_redi **list)
     }
     *list = NULL;
 }
+
+// void	ft_lstclear_2(t_redi **lst)
+// {
+// 	t_redi	*ptr;
+// 	t_redi	*tmp;
+
+// 	if (!lst)
+// 		return ;
+// 	ptr = *lst;
+// 	while (ptr)
+// 	{
+// 		tmp = ptr->next;
+// 		free(ptr->file);
+// 		free(ptr);
+// 		ptr = tmp;
+// 	}
+// 	*lst = NULL;
+// }

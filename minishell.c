@@ -6,76 +6,93 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 18:44:34 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/25 07:07:00 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/26 02:22:48 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/minishell.h"
 
-void	check_tokens(t_cmd *cmd)
+void	check_tokens(t_token *token)
 {
+	t_token	*tmp;
 
+	tmp = token;
 	printf("--------CHECK_TOKENS-----------\n");
-	while (cmd)
+	while (tmp)
 	{
-		printf("content : |%s|\n", cmd->cmd[5]);
-		printf("content : |%s|\n", cmd->cmd[4]);
-		printf("content : |%s|\n", cmd->cmd[3]);
-		printf("content : |%s|\n", cmd->cmd[2]);
-
-		// printf("type : %d\n", token->type);
+		printf("content = %s\n", tmp->content);
+		printf("type    = %d\n", tmp->type);
+		tmp = tmp->next;
 	}
 	printf("----------------------------\n");
 }
-// void	ft_free(char **str)
-// {
-// 	int	i;
+void    get_input(t_cmd *command)
+{
+	
+    t_cmd *cmd;
+	t_redi *in;
+	t_redi *out;
 
-// 	i = 0;
-// 	if (str)
-// 	{
-// 		printf(">>>>%s\n", str[i]);
-// 		while (str[i])
-// 			free(str[i++]);
-// 		free(str);
-// 	}
-// }
-
-// void	check_cmd(t_cmd *cmd)
-// {
-// 	char	**substr;
-// 	// char	*temp;
-// 	int		i;
-// 	if (cmd->type == WORD && ft_strrchr(cmd->cmd[0], ' '))
-// 	{
-		
-// 		substr = ft_split(cmd->cmd[0], ' ');
-// 		ft_free(cmd->cmd);
-// 		i = 0;
-// 		while(substr[i])
-// 		// temp = cmd->cmd[0];
-// 		// cmd->cmd[0] = ft_strdup(substr[0]);
-// 		// free(temp);
-// 		// if (substr[1])
-// 		// {
-// 		// 	temp = cmd->cmd[1];
-// 		// 	cmd->cmd[1] = ft_strdup(substr[1]);
-// 		// 	free(temp);
-// 		// }
-// 		// ft_free_tab2(substr);
-// 		// printf(">>>> %s\n", substr[0]);
-// 		printf(">>>> %s\n", cmd->cmd[0]);
-// 		// printf(">>>> %s\n", substr[1]);
-// 		printf(">>>> %s\n", cmd->cmd[1]);
-// 	}
-// }
+    int     i;
+    int     x;
+	
+    cmd = command;
+	printf("----------TABLE-------------\n");
+	i = 0;
+	while (cmd)
+    {
+        x = 0;
+        while (cmd->cmd && cmd->cmd[x])
+        {
+            printf("[node:%d] cmd[%d] = %s\n", i, x, cmd->cmd[x]);
+            x++;
+        }
+		printf("[node:%d] pipe   = %d\n", i,cmd->pipe);
+		printf("[node:%d] er     = %d\n", i,cmd->error);
+		printf("[node:%d] type     = %d\n", i,cmd->type);
+        if (cmd->in)
+        {
+			in = cmd->in;
+			while (in)
+			{
+				printf("-------------in-------------\n");
+				printf("type = %d\n", in->type);
+				printf("file = %s\n", in->file);
+				printf("m_expd = %d\n", in->must_exp);
+				in = in->next;
+			}
+        }
+        if (cmd->out)
+        {
+			out = cmd->out;
+			while (out)
+			{
+			  printf("-------------out------------\n");
+			  printf("type = %d\n", out->type);
+			  printf("file = %s\n", out->file);
+			  printf("m_expd = %d\n", out->must_exp);
+			  out = out->next;
+			}
+        }
+        printf("----------------------------\n");
+		i++;
+		cmd = cmd->next;
+	}
+	printf("\n");
+}
 
 void	minishell(t_env **env, t_token **tokens, t_cmd **cmd)
 {
+	// (void)cmd;
+	int i = 1;
 	expander(tokens, *env, *tokens);
 	space_remover(tokens, *tokens);
-	if ()
-	cmd_parsing(tokens, cmd);
+	if (i == 1)
+	{
+		cmd_parsing(tokens, cmd);	
+		get_input(*cmd);
+		//printf("Hey2\n");
+	}
 }
 
 int main(int ac, char **av, char **env)
@@ -107,9 +124,12 @@ int main(int ac, char **av, char **env)
 		//check_tokens(env_v2);
 		if(get_check_token(input, &tokens) == 1)
 		{
-			
-		
 			minishell(&env_v2, &tokens, &cmd);
+			// check_tokens(tokens);
+			// clear(tokens);
+			clear_token(&tokens);
+			
+			// clear_cmds(&cmd);
 			free(input);
 		}
 	}

@@ -10,8 +10,9 @@ li fhmt : lexer hwa whd tool li ktakhd lina l input mn terminal o ktrj3o tokens,
 kshni nsali expand dzp 3ad nzid 
 parts : lexer / is doone;
 		tokens; / are done;
-		expand;
-		parse; / syntax errors ...
+		expand; /done
+		parse; / done 
+		syntax errors 
 		signals;
 		norminette;
 

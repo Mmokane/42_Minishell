@@ -6,7 +6,7 @@
 #    By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/21 18:40:29 by mmokane           #+#    #+#              #
-#    Updated: 2023/07/25 06:44:38 by mmokane          ###   ########.fr        #
+#    Updated: 2023/07/26 01:04:46 by mmokane          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = minishell
 
 CC = cc 
 
-CFLAGS = -Wall -Werror -Wextra 
+CFLAGS = -Wall -Werror -Wextra -fsanitize=address -g3 
 
 SRCS = parser/tokens.c \
 	   tools/env_utils.c  tools/tokens_utils.c \

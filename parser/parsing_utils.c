@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 05:28:02 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/25 07:04:14 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/25 23:25:43 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void    cmd_start(t_cmd *cmd)
     cmd->out = NULL;
     cmd->pipe = 0;
 }
-// might have a pblm here
+
 void    set_op(t_token *token, t_redi **red, int type)
 {
     if (token)
@@ -56,13 +56,16 @@ void    check_operator(t_token *token, t_cmd *cmd,t_token **tok)
     tmp = NULL;
     while(token && token->type != PIPE)
     {
-        is_it_op(token, last_cmd_node(cmd));
-        if(token && token->next)
+        if(token->type == OPERATOR)
         {
-            tmp2 = token->next->next;
-            cleaner(token, &token->next, tok);
-            cleaner(tmp, &token, tok);
-            token = tmp2;
+            is_it_op(token, last_cmd_node(cmd));
+            if(token && token->next)
+            {
+                tmp2 = token->next->next;
+                cleaner(token, &token->next, tok);
+                cleaner(tmp, &token, tok);
+                token = tmp2;
+            }
         }
         else
         {
@@ -84,7 +87,8 @@ void    args_set(t_token *token, t_cmd *cmd)
 			i++;
 		token = token->next;
     }
-    // prtoext the i ig
+    if (!i++)
+        return ;// prtoext the i ig
     cmd->cmd = malloc(i * sizeof(char *));
     if (!cmd->cmd)
         return ;

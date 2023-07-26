@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 18:44:59 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/25 06:53:42 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/26 02:24:50 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ enum {
 	DOUBLE,
 	OPERATOR,
 	SPACE,
-	INSIDE_EXP,
+	INSIDE_EXP,ls 
 	SINGLE,
 	WORD,
 };
@@ -133,6 +133,8 @@ void	ft_free(char **str);
 void	check_cmd(t_cmd *cmd);
 int		true_redir(t_token *token);
 void	cleaner(t_token *tmp, t_token **curr, t_token **token);
-
-void	check_tokens(t_cmd *cmd);
+void	ft_free_tab2(char **arr);
+void	clear_cmds(t_cmd **cmd);
+void	check_tokens(t_token *token);
+void    redi_clear(t_redi **list);
 #endif
