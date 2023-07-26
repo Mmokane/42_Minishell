@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 05:48:04 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/21 04:07:49 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/26 05:24:46 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	heredoc_expand(t_token *token)
 		{
 			if (token->next && (token->next->type == DOUBLE
 					|| token->next->type == SINGLE))
-						token->content = ft_strdup(""); // we are deleting the $
+						token->content = ft_strdup("");
 		}
 		else if (ft_strlen(token->content) == 2 && token->type == OPERATOR
 			&& ft_strcmp(token->content, "<<"))
@@ -86,7 +86,6 @@ void	heredoc_expand(t_token *token)
 void	variable_expander(t_env *env, char **content)
 {
 	t_exp	exp;
-	int		j;
 	int		i;
 
 	exp.str = NULL;
@@ -101,13 +100,13 @@ void	variable_expander(t_env *env, char **content)
 		return ;
 	if (i)
 		exp.str = ft_substr(exp.prev, 0, i);
-	j = i + 1 + counter(exp.prev + i + 1);
+	exp.j = i + 1 + counter(exp.prev + i + 1);
 	exp.str2 = variable_value(env, ft_substr(exp.prev,
-				i + 1, j - i - 1));
+				i + 1, exp.j - i - 1));
 	exp.join = ft_strjoin(exp.str, exp.str2);
-	if (ft_strlen(exp.prev + j))
-		exp.last_str = ft_substr(exp.prev, j,
-				ft_strlen(exp.prev + j));
+	if (ft_strlen(exp.prev + exp.j))
+		exp.last_str = ft_substr(exp.prev, exp.j,
+				ft_strlen(exp.prev + exp.j));
 	*content = ft_strjoin(exp.join, exp.last_str);
 	free_str(exp.last_str, exp.prev, exp.str2);
 	variable_expander(env, content);

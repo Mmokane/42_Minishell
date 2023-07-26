@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 22:14:54 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/20 05:24:37 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/26 05:41:15 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	token_type(char *content)
 		return (PIPE);
 	if (*content == '\"')
 		return (DOUBLE);
-	if (!ft_strncmp(content, ">>", 2) 
+	if (!ft_strncmp(content, ">>", 2)
 		|| !ft_strncmp(content, "<<", 2))
 		return (OPERATOR);
 	if (*content == '>' || *content == '<')
@@ -27,13 +27,13 @@ int	token_type(char *content)
 		return (SPACE);
 	if (*content == '\'')
 		return (SINGLE);
-	else 
+	else
 		return (WORD);
 }
 
-int operator_type(char *content)
+int	operator_type(char *content)
 {
-	if (!ft_strncmp(content, ">>", 2) 
+	if (!ft_strncmp(content, ">>", 2)
 		|| !ft_strncmp(content, "<<", 2))
 		return (2);
 	if (*content == '|' || *content == '<'
@@ -43,12 +43,13 @@ int operator_type(char *content)
 		return (3);
 	return (0);
 }
+
 // we will check her for spaces at first then replace them all with one
 // we will check if operator_type is size of one, then add it and return index of next one
 // we check laso if operator_type has size of 2, addd it then return index + 2 to acces next one
 int	get_operator(char *line, t_token **token)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (line[i] && (line[i] == 32 || line[i] == 9))
@@ -65,7 +66,7 @@ int	get_operator(char *line, t_token **token)
 		add_tolast_node(token, new_token_node(ft_substr(line + i, 0, 2)));
 		return (i + 2);
 	}
-	return (i);		
+	return (i);
 }
 
 // we keep checking for the quote character
@@ -74,14 +75,14 @@ int	get_operator(char *line, t_token **token)
 // and we crete token for the space before it then we return the after quote i
 int	quotes_cheker(char *line, t_token **token, int c, int *flag)
 {
-	int i;
+	int	i;
 
 	i = 1;
 	while (line[i] && line[i] != c)
 		i++;
 	if (line[i] != c)
 	{
-		write(2, "Error at quotes\n", 17);// give it 127 
+		write(2, "Error at quotes\n", 17);// give it 127
 		*flag = 0;
 		return (0);
 	}
@@ -89,6 +90,7 @@ int	quotes_cheker(char *line, t_token **token, int c, int *flag)
 		add_tolast_node(token, new_token_node(ft_substr(line, 0, i + 1)));
 	return (i + 1);
 }
+
 // we check for quotes at the start, then we check for operators
 // and we skip spaces , checking for operators aswell,
 // we again check for i if its not 0, means there

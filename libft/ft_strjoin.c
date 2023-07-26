@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 18:28:40 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/21 04:07:25 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/26 05:33:41 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,3 @@ char	*ft_strjoin(char *old_str, char *current_str)
 	free(old_str);
 	return (new_str);
 }
-
-
-

@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 00:15:40 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/23 20:22:51 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/26 05:29:25 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,15 @@ void	free_str(char *str1, char *str2, char *str3)
 
 char	*variable_value(t_env *env, char *key)
 {
-	// char	*s;
-	// if (*key == '?')
-	// {
-	// 	free(key);
-	// 	s = ft_itoa(g_exec.g_exit_status);
-	// 	g_exec.g_exit_status = 0;
-	// 	return (s);
-	// }
+	char	*s;
+
+	if (*key == '?')
+	{
+		free(key);
+		s = ft_itoa(g_exec.g_exit_status);
+		// g_exec.g_exit_status = 0;
+		return (s);
+	}
 	while (env && ft_strcmp(env->keyword, key) != 0)
 		env = env->next;
 	if (env && ft_strcmp(env->keyword, key) == 0)
@@ -58,21 +59,21 @@ int	counter(char *str)
 		return (1);
 	while (str[i] && (!(!ft_isalnum(str[i]) && str[i] != '_')))
 		i++;
-	
 	return (i);
 }
+
 int	words_joiners(t_token **token, t_token *tmp)
 {
 	if ((*token)->type == PIPE || (*token)->type == OPERATOR
 		|| (*token)->type == SPACE || !tmp || tmp->type == PIPE
-			|| tmp->type == OPERATOR || tmp->type == SPACE)
-			return (1);
+		|| tmp->type == OPERATOR || tmp->type == SPACE)
+		return (1);
 	else
-		{
-			tmp->content = ft_strjoin(tmp->content, (*token)->content);
-			tmp->next = (*token)->next;
-			clear(*token);
-			*token = tmp->next;
-			return (0);
-		}
+	{
+		tmp->content = ft_strjoin(tmp->content, (*token)->content);
+		tmp->next = (*token)->next;
+		clear(*token);
+		*token = tmp->next;
+		return (0);
+	}
 }

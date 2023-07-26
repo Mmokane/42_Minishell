@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 18:44:59 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/26 04:25:10 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/26 05:33:14 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,15 @@ typedef struct s_exp
 	char	*join;
 	char	*last_str;
 	char	*prev;
-}	t_exp;
+	int		j;
+}		t_exp;
 typedef struct s_token
 {
 	int				type;
 	char			*content;
 	int				expanded;
 	struct s_token	*next;
-}		t_token;
+}					t_token;
 
 typedef struct s_redi
 {
@@ -69,19 +70,18 @@ typedef struct s_env
 	char			*value;
 	int				bolean;
 	struct s_env	*next;
-}			t_env;
+}					t_env;
 
 typedef struct s_cmd
 {
-	char	**cmd;
-	int		pipe;
-	int 	type;
-	int		error;
-	t_redi 	*in;
-	t_redi	*out;
+	char			**cmd;
+	int				pipe;
+	int				type;
+	int				error;
+	t_redi			*in;
+	t_redi			*out;
 	struct s_cmd	*next;
-}			t_cmd;
-
+}					t_cmd;
 
 void	arg_checker(int ac, t_env **env_v2, char **env);
 void	*env_parsing(char **env, t_env **env_v2);
@@ -113,11 +113,10 @@ void	space_remover(t_token **token, t_token *tok);
 void	ft_remove(t_token *tmp, t_token **curr, t_token **token);
 void	clear(t_token *list);
 int		words_joiners(t_token **token, t_token *tmp);
-///
-void    cmd_start(t_cmd *cmd);
-void    set_op(t_token *token, t_redi **redi, int type);
-void    check_operator(t_token *token, t_cmd *cmd,t_token **tok);
-void    args_set(t_token *token, t_cmd *cmd);
+void	cmd_start(t_cmd *cmd);
+void	set_op(t_token *token, t_redi **redi, int type);
+void	check_operator(t_token *token, t_cmd *cmd, t_token **tok);
+void	args_set(t_token *token, t_cmd *cmd);
 void	cmd_builder(t_cmd *cmd, t_token *token, int *i);
 void	cmd_init(t_token **token, t_cmd **cmd);
 void	cmd_parsing(t_token **token, t_cmd **cmd);
@@ -125,10 +124,10 @@ int		get_check_token(char *input, t_token **token);
 t_cmd	*new_cmd_node(void);
 t_cmd	*last_cmd_node(t_cmd *list);
 void	add_tolast_cmdnode(t_cmd **list, t_cmd *new);
-t_redi  *new_redir_node(char *out, int type);
+t_redi	*new_redir_node(char *out, int type);
 t_redi	*last_redi_node(t_redi *list);
-void    add_tolast_redi(t_redi **list, t_redi *new);
-void    redi_clear(t_redi **list);
+void	add_tolast_redi(t_redi **list, t_redi *new);
+void	redi_clear(t_redi **list);
 void	ft_free(char **str);
 void	check_cmd(t_cmd *cmd);
 int		true_redir(t_token *token);
@@ -136,5 +135,6 @@ void	cleaner(t_token *tmp, t_token **curr, t_token **token);
 void	ft_free_tab2(char **arr);
 void	clear_cmds(t_cmd **cmd);
 void	check_tokens(t_token *token);
-void    redi_clear(t_redi **list);
+void	redi_clear(t_redi **list);
+
 #endif

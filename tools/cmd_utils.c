@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 03:30:07 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/26 00:54:42 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/26 05:41:53 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_cmd	*last_cmd_node(t_cmd *list)
 
 void	add_tolast_cmdnode(t_cmd **list, t_cmd *new)
 {
-	t_cmd	*last = NULL;
+	t_cmd	*last;
 
 	if (!(*list))
 	{
@@ -53,8 +53,6 @@ void	ft_free_tab2(char **arr)
 	i = 0;
 	while (arr[i])
 	{
-		// printf("[%p]\n", arr[i]);
-		// printf("[%s]\n", arr[i]);
 		free(arr[i]);
 		i++;
 	}
@@ -82,4 +80,3 @@ void	clear_cmds(t_cmd **cmd)
 		tmp1 = tmp2;
 	}
 }
-

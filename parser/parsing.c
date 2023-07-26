@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 02:29:13 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/26 02:24:12 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/26 05:39:41 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,18 @@ int	true_redir(t_token *token)
 void	cmd_init(t_token **token, t_cmd **cmd)
 {
 	add_tolast_cmdnode(cmd, new_cmd_node());
- 	cmd_start(last_cmd_node(*cmd));
+	cmd_start(last_cmd_node(*cmd));
 	check_operator(*token, *cmd, token);
 	args_set(*token, last_cmd_node(*cmd));
 }
 
 void	cmd_parsing(t_token **token, t_cmd **cmd)
 {
-	t_token *tok1;
-	t_token *tok2;
-	int	i;
-	static int pipe;
+	t_token		*tok1;
+	t_token		*tok2;
+	int			i;
+	static int	pipe;
+
 	cmd_init(token, cmd);
 	if (pipe && !last_cmd_node(*cmd)->in)
 		last_cmd_node(*cmd)->pipe = pipe--;
@@ -68,9 +69,8 @@ void	cmd_parsing(t_token **token, t_cmd **cmd)
 	// clear(tok1);
 	if (last_cmd_node(*cmd)->pipe)
 		pipe++;
-	return(cmd_parsing(token, cmd));
+	return (cmd_parsing(token, cmd));
 }
-
 
 int	get_check_token(char *input, t_token **token)
 {
@@ -92,6 +92,3 @@ int	get_check_token(char *input, t_token **token)
 	}
 	return (1);
 }
-
-
-
