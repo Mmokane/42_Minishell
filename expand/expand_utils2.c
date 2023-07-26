@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 00:15:40 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/26 05:29:25 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/26 15:59:45 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,15 @@ void	free_str(char *str1, char *str2, char *str3)
 
 char	*variable_value(t_env *env, char *key)
 {
-	char	*s;
+	// char	*s;
 
-	if (*key == '?')
-	{
-		free(key);
-		s = ft_itoa(g_exec.g_exit_status);
-		// g_exec.g_exit_status = 0;
-		return (s);
-	}
+	// if (*key == '?')
+	// {
+	// 	free(key);
+	// 	s = ft_itoa(g_exec.g_exit_status);
+	// 	// g_exec.g_exit_status = 0;
+	// 	return (s);
+	// }
 	while (env && ft_strcmp(env->keyword, key) != 0)
 		env = env->next;
 	if (env && ft_strcmp(env->keyword, key) == 0)
