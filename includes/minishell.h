@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 18:44:59 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/26 02:24:50 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/26 04:25:10 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ enum {
 	DOUBLE,
 	OPERATOR,
 	SPACE,
-	INSIDE_EXP,ls 
+	INSIDE_EXP,
 	SINGLE,
 	WORD,
 };
