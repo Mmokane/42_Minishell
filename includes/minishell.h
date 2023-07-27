@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 18:44:59 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/27 04:24:20 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/27 04:32:05 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,11 +138,11 @@ void	check_tokens(t_token *token);
 void	redi_clear(t_redi **list);
 int		error_exit_s(char *s, int fd);
 int		syntax_check(t_token *token, t_token *tmp, int i);
-int		syntaxEr_find(t_token *token, t_token *tmp);
+int		syntax_er_find(t_token *token, t_token *tmp);
 int		syntax_checker(t_token *token);
 void	ac_check(int ac);
 void	check_exit(char *input);
-int	spaces_check(char *input);
+int		spaces_check(char *input);
 void	check_check_spaces(char *input);
 
 #endif

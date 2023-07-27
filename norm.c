@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 04:06:55 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/27 04:24:54 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/27 04:30:19 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	check_exit(char *input)
 		exit(g_exit_status);
 	}
 }
+
 int	spaces_check(char *input)
 {
 	int	i;

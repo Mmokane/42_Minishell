@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 16:17:31 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/27 02:21:07 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/27 04:32:17 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	error_exit_s(char *s, int fd)
 	g_exit_status = 258;
 	return (0);
 }
+
 int	syntax_check(t_token *token, t_token *tmp, int i)
 {
 	if (i)
@@ -46,7 +47,7 @@ int	syntax_check(t_token *token, t_token *tmp, int i)
 	return (1);
 }
 
-int	syntaxEr_find(t_token *token, t_token *tmp)
+int	syntax_er_find(t_token *token, t_token *tmp)
 {
 	if ((tmp->type == PIPE || tmp->type == OPERATOR)
 		&& (token->type == PIPE || token->type == OPERATOR))
@@ -66,7 +67,8 @@ int	syntax_checker(t_token *token)
 		return (error_exit_s("syntax error near unexpected token `|\'", 2));
 	if (token && !token->next
 		&& (token->type == OPERATOR))
-		return (error_exit_s("syntax error near unexpected token `newline\'", 2));
+		return (error_exit_s
+			("syntax error near unexpected token `newline\'", 2));
 	while (token)
 	{
 		if ((!ft_strcmp(token->content, "&&")
@@ -83,6 +85,3 @@ int	syntax_checker(t_token *token)
 			("syntax error near unexpected token `newline\'", 2));
 	return (1);
 }
-
-
-

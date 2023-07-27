@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 02:29:13 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/27 03:59:14 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/27 04:32:45 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	true_redir(t_token *token)
 	if (token->expanded)
 	{
 		if ((!*(token->content)) || (ft_strrchr(token->content, ' ')
-			&& token->content[len] != ' '))
+				&& token->content[len] != ' '))
 		{
 			write(2, "ambiguous redirect\n", 20);
 			g_exit_status = 1;
@@ -55,13 +55,11 @@ void	cmd_parsing(t_token **token, t_cmd **cmd)
 		tok2 = tok1;
 		cmd_builder(last_cmd_node(*cmd), tok1, &i);
 		tok1 = tok1->next;
-		// clear(tok2);
 	}
 	if (!tok1)
 		return ;
 	*token = tok1->next;
 	cmd_builder(last_cmd_node(*cmd), tok1, &i);
-	// clear(tok1);
 	if (last_cmd_node(*cmd)->pipe)
 		pipe++;
 	return (cmd_parsing(token, cmd));

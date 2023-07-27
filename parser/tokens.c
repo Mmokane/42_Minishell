@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 22:14:54 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/26 05:41:15 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/27 04:36:12 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,12 @@ int	operator_type(char *content)
 	return (0);
 }
 
-// we will check her for spaces at first then replace them all with one
-// we will check if operator_type is size of one, then add it and return index of next one
-// we check laso if operator_type has size of 2, addd it then return index + 2 to acces next one
+// we will check her for spaces at first then 
+// -replace them all with one
+// we will check if operator_type is size of one, 
+// -then add it and return index of next one
+// we check laso if operator_type has size of 2, 
+// -add it then return index + 2 to acces next one
 int	get_operator(char *line, t_token **token)
 {
 	int	i;
@@ -73,6 +76,7 @@ int	get_operator(char *line, t_token **token)
 // if we didnt find any , we return an error
 // after finishing we check for the quote character
 // and we crete token for the space before it then we return the after quote i
+// 127 exit ?
 int	quotes_cheker(char *line, t_token **token, int c, int *flag)
 {
 	int	i;
@@ -82,7 +86,7 @@ int	quotes_cheker(char *line, t_token **token, int c, int *flag)
 		i++;
 	if (line[i] != c)
 	{
-		write(2, "Error at quotes\n", 17);// give it 127
+		write(2, "Error at quotes\n", 17);
 		*flag = 0;
 		return (0);
 	}
@@ -111,18 +115,3 @@ int	get_word(char *line, t_token **token, int *flag)
 		add_tolast_node(token, new_token_node(ft_substr(line, 0, i)));
 	return (i);
 }
-
-// void	check_tokens(t_token *token)
-// {
-// 	t_token	*tmp;
-
-// 	tmp = token;
-// 	printf("--------CHECK_TOKENS-----------\n");
-// 	while (tmp)
-// 	{
-// 		printf("content = %s\n", tmp->content);
-// 		printf("type    = %d\n", tmp->type);
-// 		tmp = tmp->next;
-// 	}
-// 	printf("----------------------------\n");
-// }
