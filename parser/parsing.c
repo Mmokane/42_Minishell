@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 02:29:13 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/26 05:39:41 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/27 02:12:52 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,11 @@ int	true_redir(t_token *token)
 	len = ft_strlen(token->content) - 1;
 	if (token->expanded)
 	{
-		if (ft_strrchr(token->content, ' ') && token->content[len] != ' ')
+		if ((!*(token->content)) || (ft_strrchr(token->content, ' ')
+			&& token->content[len] != ' '))
 		{
-			write(2, "error in redirection\n", 22);
-			// g_exec.g_exit_status = 1;
-			return (1);
-		}
-		if (!*(token->content))
-		{
-			write(2, "error in redirection\n", 22);
-			// g_exec.g_exit_status = 1;
+			write(2, "ambiguous redirect\n", 22);
+			g_exit_status = 1;
 			return (1);
 		}
 	}

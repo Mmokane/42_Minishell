@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 18:44:34 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/26 15:59:06 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/27 02:26:21 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,10 @@ void	minishell(t_env **env, t_token **tokens, t_cmd **cmd)
 {
 	expander(tokens, *env, *tokens);
 	space_remover(tokens, *tokens);
-	cmd_parsing(tokens, cmd);
-	get_input(*cmd);
+	if (syntax_checker(*tokens) == 1)
+	{
+		cmd_parsing(tokens, cmd);
+	}
 }
 
 int	main(int ac, char **av, char **env)

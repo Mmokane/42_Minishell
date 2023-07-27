@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 05:53:21 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/21 01:31:26 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/27 00:49:40 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,13 @@ void	cleaner(t_token *tmp, t_token **curr, t_token **token)
 	if (!tmp)
 	{
 		*token = (*curr)->next;
-		clear(*curr); // 
+		clear(*curr);
 		(*curr) = NULL;
 	}
 	else
 	{
 		exp = (*curr)->next;
 		clear(*curr);
-		
 		tmp->next = exp;
 		*curr = exp;
 	}
@@ -50,5 +49,3 @@ void	space_remover(t_token **token, t_token *tok)
 		}
 	}
 }
-
-	
