@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 03:30:07 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/26 05:41:53 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/27 21:50:37 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	add_tolast_cmdnode(t_cmd **list, t_cmd *new)
 {
 	t_cmd	*last;
 
+	last = *list;
 	if (!(*list))
 	{
 		*list = new;

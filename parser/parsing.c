@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 02:29:13 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/27 04:32:45 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/28 00:17:22 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	cmd_init(t_token **token, t_cmd **cmd)
 void	cmd_parsing(t_token **token, t_cmd **cmd)
 {
 	t_token		*tok1;
-	t_token		*tok2;
 	int			i;
 	static int	pipe;
 
@@ -52,7 +51,6 @@ void	cmd_parsing(t_token **token, t_cmd **cmd)
 	tok1 = *token;
 	while (tok1 && tok1->type != PIPE)
 	{
-		tok2 = tok1;
 		cmd_builder(last_cmd_node(*cmd), tok1, &i);
 		tok1 = tok1->next;
 	}
@@ -60,6 +58,7 @@ void	cmd_parsing(t_token **token, t_cmd **cmd)
 		return ;
 	*token = tok1->next;
 	cmd_builder(last_cmd_node(*cmd), tok1, &i);
+	clear(tok1);
 	if (last_cmd_node(*cmd)->pipe)
 		pipe++;
 	return (cmd_parsing(token, cmd));

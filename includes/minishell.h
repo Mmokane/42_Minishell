@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 18:44:59 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/27 04:32:05 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/28 00:30:21 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,5 +144,6 @@ void	ac_check(int ac);
 void	check_exit(char *input);
 int		spaces_check(char *input);
 void	check_check_spaces(char *input);
+void	check_tokens(t_token *token);
 
 #endif

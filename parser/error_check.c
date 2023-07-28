@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 16:17:31 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/27 04:32:17 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/27 19:42:16 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	syntax_checker(t_token *token)
 				|| !ft_strcmp(token->content, "&"))
 			&& token->type == WORD)
 			return (error_exit_s("syntax error, no bonus", 2));
-		if (tmp && !syntaxEr_find(token, tmp))
+		if (tmp && !syntax_er_find(token, tmp))
 			return (0);
 		tmp = token;
 		token = token->next;
