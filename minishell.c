@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+//* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
@@ -6,26 +6,26 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 18:44:34 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/28 01:17:51 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/28 14:20:19 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/minishell.h"
 
-// // void	check_tokens(t_token *token)
-// // {
-// // 	t_token	*tmp;
+void	check_tokens(t_token *token)
+{
+	t_token	*tmp;
 
-// // 	tmp = token;
-// // 	printf("--------CHECK_TOKENS-----------\n");
-// // 	while (tmp)
-// // 	{
-// // 		printf("content = %s\n", tmp->content);
-// // 		printf("type    = %d\n", tmp->type);
-// // 		tmp = tmp->next;
-// // 	}
-// // 	printf("----------------------------\n");
-// // }
+	tmp = token;
+	printf("--------CHECK_TOKENS-----------\n");
+	while (tmp)
+	{
+		printf("content = %s\n", tmp->content);
+		printf("type    = %d\n", tmp->type);
+		tmp = tmp->next;
+	}
+	printf("----------------------------\n");
+}
 void    get_input(t_cmd *command)
 {
 
@@ -81,16 +81,21 @@ void    get_input(t_cmd *command)
 }
 void	minishell(t_env **env, t_token **tokens, t_cmd **cmd)
 {
+	(void)cmd;
 	expander(tokens, *env, *tokens);
 	space_remover(tokens, *tokens);
 	if (syntax_checker(*tokens) == 1)
+	{
 		cmd_parsing(tokens, cmd);
+		clear_token(tokens);
+	}
 	else
 		clear_token(tokens);
 }
 
-int	main(int ac, char **env)
+int	main(int ac, char **av, char **env)
 {
+	(void)av;
 	t_token	*tokens;
 	t_env	*env_v2;
 	t_cmd	*cmd;
@@ -116,12 +121,16 @@ int	main(int ac, char **env)
 			add_history(input);
 			if (get_check_token(input, &tokens) == 1)
 			{
+				check_tokens(tokens);
 				minishell(&env_v2, &tokens, &cmd);
 				get_input(cmd);
-				clear_cmds(&cmd);
+				check_tokens(tokens);
 				clear_token(&tokens);
+				clear_cmds(&cmd);
 			}
+			clear_token(&tokens);
 			free(input);
+			//system("leaks minishell");
 		}
 		input = NULL;
 	}

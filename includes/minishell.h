@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 18:44:59 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/28 00:30:21 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/29 02:51:21 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ int		true_redir(t_token *token);
 void	cleaner(t_token *tmp, t_token **curr, t_token **token);
 void	ft_free_tab2(char **arr);
 void	clear_cmds(t_cmd **cmd);
-void	check_tokens(t_token *token);
+// void	check_tokens(t_token *token);
 void	redi_clear(t_redi **list);
 int		error_exit_s(char *s, int fd);
 int		syntax_check(t_token *token, t_token *tmp, int i);

@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 02:29:13 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/28 00:17:22 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/29 02:55:51 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ void	cmd_parsing(t_token **token, t_cmd **cmd)
 	t_token		*tok1;
 	int			i;
 	static int	pipe;
-
+	static int a;
+	tok1 = NULL;
 	cmd_init(token, cmd);
 	if (pipe && !last_cmd_node(*cmd)->in)
 		last_cmd_node(*cmd)->pipe = pipe--;
@@ -59,8 +60,14 @@ void	cmd_parsing(t_token **token, t_cmd **cmd)
 	*token = tok1->next;
 	cmd_builder(last_cmd_node(*cmd), tok1, &i);
 	clear(tok1);
+	printf("--*--**--**-%s\n", tok1->content);
+	printf("--*--**--**-%p\n", tok1->next);
 	if (last_cmd_node(*cmd)->pipe)
 		pipe++;
+	system("leaks minishell");
+	printf("a = %d\n", a);
+	a++;
+	printf("a = %d\n", a);
 	return (cmd_parsing(token, cmd));
 }
 
