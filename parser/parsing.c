@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 02:29:13 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/29 02:55:51 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/29 04:30:36 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ void	cmd_init(t_token **token, t_cmd **cmd)
 void	cmd_parsing(t_token **token, t_cmd **cmd)
 {
 	t_token		*tok1;
+	t_token		*tok2;
 	int			i;
 	static int	pipe;
-	static int a;
-	tok1 = NULL;
+
 	cmd_init(token, cmd);
 	if (pipe && !last_cmd_node(*cmd)->in)
 		last_cmd_node(*cmd)->pipe = pipe--;
@@ -52,22 +52,18 @@ void	cmd_parsing(t_token **token, t_cmd **cmd)
 	tok1 = *token;
 	while (tok1 && tok1->type != PIPE)
 	{
+		tok2 = tok1;
 		cmd_builder(last_cmd_node(*cmd), tok1, &i);
 		tok1 = tok1->next;
+		clear(tok2);
 	}
 	if (!tok1)
 		return ;
 	*token = tok1->next;
 	cmd_builder(last_cmd_node(*cmd), tok1, &i);
 	clear(tok1);
-	printf("--*--**--**-%s\n", tok1->content);
-	printf("--*--**--**-%p\n", tok1->next);
 	if (last_cmd_node(*cmd)->pipe)
 		pipe++;
-	system("leaks minishell");
-	printf("a = %d\n", a);
-	a++;
-	printf("a = %d\n", a);
 	return (cmd_parsing(token, cmd));
 }
 
