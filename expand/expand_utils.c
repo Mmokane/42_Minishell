@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 05:48:04 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/29 02:50:58 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/30 01:29:01 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	heredoc_expand(t_token *token)
 						token->content = ft_strdup("");
 		}
 		else if (ft_strlen(token->content) == 2 && token->type == OPERATOR
-			&& ft_strcmp(token->content, "<<"))
+			&& ft_strcmp(token->content, "<<") == 0)
 		{
 			if (token->next && token->next->type == SPACE)
 			{

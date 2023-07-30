@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 05:28:02 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/29 02:53:33 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/30 01:07:01 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,14 @@ void	is_it_op(t_token *token, t_cmd *cmd)
 			return ;
 		}
 	}
-	if (!ft_strcmp(token->content, ">>"))
-		set_op(token->next, &cmd->out, append);
-	else if (*(token->content) == '>')
-		set_op(token->next, &cmd->out, out);
-	else if (!ft_strcmp(token->content, "<<"))
+	if (!ft_strcmp(token->content, "<<"))
 		set_op(token->next, &cmd->out, heredoc);
 	else if (*(token->content) == '<')
 		set_op(token->next, &cmd->out, in);
+	else if (!ft_strcmp(token->content, ">>"))
+		set_op(token->next, &cmd->out, append);
+	else if (*(token->content) == '>')
+		set_op(token->next, &cmd->out, out);
 }
 
 void	check_operator(t_token *token, t_cmd *cmd, t_token **tok)

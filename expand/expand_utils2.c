@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 00:15:40 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/29 02:51:02 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/29 19:59:26 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ char	*variable_value(t_env *env, char *key)
 		free(key);
 		s = ft_itoa(g_exit_status);
 		g_exit_status = 0;
+		printf("%s\n", s);
 		return (s);
 	}
 	while (env && ft_strcmp(env->keyword, key) != 0)
