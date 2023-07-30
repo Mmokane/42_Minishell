@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 04:07:08 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/29 02:53:47 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/07/30 03:04:57 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_redi	*new_redir_node(char *out, int type)
 {
 	t_redi	*tmp;
 
-	tmp = malloc(sizeof(t_redi));
+	tmp = (t_redi *)malloc(sizeof(t_redi));
 	tmp->file = out;
 	tmp->type = type;
 	tmp->must_exp = 0;
