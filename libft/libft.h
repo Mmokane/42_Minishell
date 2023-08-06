@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 18:31:06 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/29 02:53:19 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/08/04 18:31:37 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdint.h>
 # include <limits.h>
 
 void	ft_bzero(void *s, size_t n);
@@ -54,4 +55,6 @@ int		ft_putendl_fd(char *s, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 int		ft_strcmp(const char *s1, const char *s2);
+int		ft_strchr_bool(const char *s, int c);
+
 #endif

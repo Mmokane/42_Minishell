@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 04:06:55 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/30 02:19:43 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/08/03 18:04:32 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	check_exit(char *input)
 	if (!input)
 	{
 		ft_putstr_fd("exit", 2);
-		exit(g_exit_status);
+		exit(1);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 05:48:04 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/30 01:29:01 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/08/04 18:32:10 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	expand_check(t_token *token, t_env *env)
 	{
 		if (ft_strlen(token->content) > 1)
 		{
-			if (*(token->content) == '$')
+			if (ft_strchr_bool(token->content, '$') == 1)
 			{
 				token->expanded = 1;
 				variable_expander(env, &token->content);

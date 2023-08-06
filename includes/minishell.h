@@ -6,20 +6,29 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 18:44:59 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/30 01:31:29 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/08/04 23:23:25 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+# include "../libft/libft.h"
+# include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include <unistd.h>
+# include <fcntl.h>
 # include <string.h>
-# include "../libft/libft.h"
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <errno.h>
+# include <signal.h>
+# include <limits.h>
+# include <sys/wait.h>
+# include <dirent.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+# undef SPACE
 
 int	g_exit_status;
 
@@ -61,6 +70,7 @@ typedef struct s_redi
 	int				type;
 	char			*file;
 	int				must_exp;
+	char			*here_file;
 	struct s_redi	*next;
 }					t_redi;
 
@@ -134,7 +144,6 @@ int		true_redir(t_token *token);
 void	cleaner(t_token *tmp, t_token **curr, t_token **token);
 void	ft_free_tab2(char **arr);
 void	clear_cmds(t_cmd **cmd);
-// void	check_tokens(t_token *token);
 void	redi_clear(t_redi **list);
 int		error_exit_s(char *s, int fd);
 int		syntax_check(t_token *token, t_token *tmp, int i);
@@ -145,5 +154,60 @@ void	check_exit(char *input);
 int		spaces_check(char *input);
 void	check_check_spaces(char *input);
 void	check_tokens(t_token *token);
+
+//----------execution----------------
+
+//libft2
+
+void	ft_lstadd_back(t_env **lst, t_env *new);
+t_env	*ft_lstnew(char *keyword, char *value);
+char	*ft_strcat(char *dest, char *src);
+char	*ft_strcpy(char *dest, char *src);
+char	*ft_strstr(char *str, char *to_find);
+char	*ft_strjoin2(char *s1, char *s2);
+
+//builtins
+int		ft_cd(char **av, t_env *env);
+void	ft_echo(char **args);
+void	ft_env(t_env *env, char **args);
+int		ft_exit(t_cmd *cmd_list);
+void	ft_export(t_cmd *cmd_list, t_env *env);
+int		ft_pwd(void);
+void	ft_unset(t_cmd *cmd_list, t_env *env);
+char	**env_to_array(t_env *env);
+void	exec_builtins(t_cmd *cmd_list, t_env *env);
+int		check_if_builtins(t_cmd *cmd);
+void	exec_cmds(t_cmd *cmd_list, t_env **env);
+
+//redirections_utils
+char	*ignore_spaces(char *str);
+char	*delete_quotes(char *str);
+int		wait_signal(int pid, int fd);
+char	*name_generator(void);
+
+//redirections
+
+void	input_redirection(t_cmd *cmd_list, int fd_in);
+void	output_redirection(t_cmd *cmd_list, int fd_out);
+void	ft_heredoc(t_cmd *cmd_list, t_env *env);
+void	redirections(t_cmd *cmd_list);
+
+//utils
+void	close_fds(int *ends, int fd_in);
+void	my_dup(int fd, int othe_fd);
+void	dup_fds(int *ends, int fd_in);
+
+//utils export
+void	replace_value(t_env *env, char *key, char *value);
+void	append_value(t_env *env, char *key, char *value);
+char	*take_value(char *value);
+char	*take_keyword(char *keyword, int *check);
+char	charsrch(char *str);
+int		export_only_char(char *keyword);
+int		keyword_is_available(t_env **env, char *k);
+
+void	exec(t_cmd *cmd_list, t_env *env);
+void	*env_search(t_env **env_v2);
+int		get_exit_status(int status);
 
 #endif

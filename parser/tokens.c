@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 22:14:54 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/28 01:16:50 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/08/04 01:43:52 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,6 @@ int	operator_type(char *content)
 	return (0);
 }
 
-// we will check her for spaces at first then 
-// -replace them all with one
-// we will check if operator_type is size of one, 
-// -then add it and return index of next one
-// we check laso if operator_type has size of 2, 
-// -add it then return index + 2 to acces next one
 int	get_operator(char *line, t_token **token)
 {
 	int	i;

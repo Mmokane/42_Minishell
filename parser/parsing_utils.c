@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 05:28:02 by mmokane           #+#    #+#             */
-/*   Updated: 2023/08/02 01:29:11 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/08/02 16:42:29 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	args_set(t_token *token, t_cmd *cmd)
 	}
 	if (!i++)
 		return ;
-	cmd->cmd = malloc(i * sizeof(char *));
+	cmd->cmd = malloc(sizeof(char *) * (i + 1));
 	if (!cmd->cmd)
 		return ;
 	cmd->cmd[--i] = NULL;

@@ -1,6 +1,0 @@
-echo fdsf
-asdf
-asdf
-asdfasdfasdfasd
-leaks minishell
-lsof -c minishell

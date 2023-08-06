@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: taelkhal <taelkhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 04:07:08 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/30 03:04:57 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/08/04 01:51:00 by taelkhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_redi	*new_redir_node(char *out, int type)
 	tmp = (t_redi *)malloc(sizeof(t_redi));
 	tmp->file = out;
 	tmp->type = type;
+	tmp->here_file = NULL;
 	tmp->must_exp = 0;
 	tmp->next = NULL;
 	return (tmp);
@@ -59,7 +60,12 @@ void	redi_clear(t_redi **list)
 	while (tmp)
 	{
 		tmp2 = tmp->next;
-		free(tmp->file);
+		free (tmp->file);
+		if (tmp->here_file)
+		{
+			unlink(tmp->here_file);
+			free(tmp->here_file);
+		}
 		free(tmp);
 		tmp = tmp2;
 	}

@@ -1,25 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: taelkhal <taelkhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/26 18:17:41 by mmokane           #+#    #+#             */
-/*   Updated: 2023/08/02 17:14:00 by marvin           ###   ########.fr       */
+/*   Created: 2023/08/04 02:08:44 by taelkhal          #+#    #+#             */
+/*   Updated: 2023/08/04 02:11:09 by taelkhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/minishell.h"
 
-size_t	ft_strlen(const char *s)
+char	*ft_strcat(char *dest, char *src)
 {
-	size_t	i;
+	int	i;
+	int	j;
 
 	i = 0;
-	if (!s)
-		return (0);
-	while (s[i])
+	j = 0;
+	if (!dest || !src)
+		return (NULL);
+	while (dest[i] != '\0')
 		i++;
-	return (i);
+	while (src[j] != '\0')
+	{
+			dest[i] = src[j];
+			i++;
+			j++;
+	}
+	dest[i] = '\0';
+	return (dest);
 }

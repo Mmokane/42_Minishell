@@ -1,33 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand.c                                           :+:      :+:    :+:   */
+/*   ft_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/13 06:11:54 by mmokane           #+#    #+#             */
-/*   Updated: 2023/08/04 01:43:44 by mmokane          ###   ########.fr       */
+/*   Created: 2023/06/16 12:07:34 by taelkhal          #+#    #+#             */
+/*   Updated: 2023/08/03 19:14:34 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
-void	expander(t_token **tokens, t_env *env, t_token *token)
+void	ft_env(t_env *env, char **args)
 {
-	t_token	*tmp;
+	t_env	*tmp;
 
-	(void)env;
-	(void)token;
-	tmp = NULL;
-	quotes_triming(*tokens);
-	heredoc_expand(*tokens);
-	while (token)
+	tmp = env;
+	if (args[1])
+		printf ("env: %s: No such file or directory\n", args[1]);
+	else
 	{
-		expand_check(token, env);
-		if (words_joiners(&token, tmp) != 0)
+		while (tmp)
 		{
-			tmp = token;
-			token = token->next;
+			if (tmp->keyword && tmp->keyword)
+			{
+				ft_putstr_fd(tmp->keyword, 1);
+				write (1, "=", 1);
+				ft_putstr_fd(tmp->value, 1);
+				write (1, "\n", 1);
+			}
+			tmp = tmp->next;
 		}
 	}
 }

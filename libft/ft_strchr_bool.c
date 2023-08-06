@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strchr_bool.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/26 18:17:41 by mmokane           #+#    #+#             */
-/*   Updated: 2023/08/02 17:14:00 by marvin           ###   ########.fr       */
+/*   Created: 2023/08/04 04:28:50 by mmokane           #+#    #+#             */
+/*   Updated: 2023/08/04 19:37:01 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+int	ft_strchr_bool(const char *s, int c)
 {
-	size_t	i;
+	char	c1;
+	int		i;
+	int		len;
 
+	len = ft_strlen(s);
 	i = 0;
-	if (!s)
-		return (0);
-	while (s[i])
+	c1 = (char)c;
+	while (*s != '\0' && *s != c1)
+	{
 		i++;
-	return (i);
+		s++;
+	}
+	if (*s == c1 && i < len)
+		return (1);
+	return (0);
 }

@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/26 18:17:41 by mmokane           #+#    #+#             */
-/*   Updated: 2023/08/02 17:14:00 by marvin           ###   ########.fr       */
+/*   Created: 2023/06/15 15:49:02 by taelkhal          #+#    #+#             */
+/*   Updated: 2023/08/04 22:44:59 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/minishell.h"
 
-size_t	ft_strlen(const char *s)
+int	ft_pwd(void)
 {
-	size_t	i;
+	char	*pwd;
 
-	i = 0;
-	if (!s)
-		return (0);
-	while (s[i])
-		i++;
-	return (i);
+	pwd = getcwd(NULL, 1000);
+	if (!pwd)
+	{
+		perror("");
+		return (1);
+	}
+	ft_putstr_fd(pwd, 1);
+	write (1, "\n", 1);
+	free(pwd);
+	return (g_exit_status);
 }

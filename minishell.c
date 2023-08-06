@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 18:44:34 by mmokane           #+#    #+#             */
-/*   Updated: 2023/08/02 01:29:38 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/08/04 23:05:04 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,65 +16,15 @@ void	sig_int_handler(int s)
 {
 	(void)s;
 	write(1, "\n", 1);
-	g_exit_status = 1;
-	rl_forced_update_display();
+	rl_replace_line("", 0);
+	rl_on_new_line();
+	rl_redisplay();
 }
 
 void	set_signals(void)
 {
 	signal(SIGQUIT, SIG_IGN);
 	signal(SIGINT, sig_int_handler);
-}
-void    get_input(t_cmd *command)
-{
-    t_cmd *cmd;
-	t_redi *in;
-	t_redi *out;
-    int     i;
-    int     x;
-    cmd = command;
-	printf("----------TABLE-------------\n");
-	i = 0;
-	while (cmd)
-    {
-        x = 0;
-        while (cmd->cmd && cmd->cmd[x])
-        {
-            printf("[node:%d] cmd[%d] = %s\n", i, x, cmd->cmd[x]);
-            x++;
-        }
-		printf("[node:%d] pipe   = %d\n", i,cmd->pipe);
-		printf("[node:%d] er     = %d\n", i,cmd->error);
-		printf("[node:%d] type     = %d\n", i,cmd->type);
-        if (cmd->in)
-        {
-			in = cmd->in;
-			while (in)
-			{
-				printf("-------------in-------------\n");
-				printf("type = %d\n", in->type);
-				printf("file = %s\n", in->file);
-				printf("m_expd = %d\n", in->must_exp);
-				in = in->next;
-			}
-        }
-        if (cmd->out)
-        {
-			out = cmd->out;
-			while (out)
-			{
-			  printf("-------------out------------\n");
-			  printf("type = %d\n", out->type);
-			  printf("file = %s\n", out->file);
-			  printf("m_expd = %d\n", out->must_exp);
-			  out = out->next;
-			}
-        }
-        printf("----------------------------\n");
-		i++;
-		cmd = cmd->next;
-	}
-	printf("\n");
 }
 
 void	minishell(t_env **env, t_token **tokens, t_cmd **cmd)
@@ -100,7 +50,8 @@ void	process_input(char *input, t_env **env_v2,
 		if (get_check_token(input, tokens) == 1)
 		{
 			minishell(env_v2, tokens, cmd);
-			//get_input(*cmd);
+			ft_heredoc(*cmd, *env_v2);
+			exec(*cmd, *env_v2);
 			clear_cmds(cmd);
 		}
 	}

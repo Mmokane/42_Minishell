@@ -6,7 +6,7 @@
 /*   By: mmokane <mmokane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 02:01:25 by mmokane           #+#    #+#             */
-/*   Updated: 2023/07/26 05:38:40 by mmokane          ###   ########.fr       */
+/*   Updated: 2023/08/04 22:43:29 by mmokane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,22 @@ void	arg_checker(int ac, t_env **dup_env, char **env)
 		exit(1);
 	}
 	env_parsing(env, dup_env);
+}
+
+void	*env_search(t_env **env_v2)
+{
+	t_env	*tmp;
+
+	tmp = *env_v2;
+	while (tmp)
+	{
+		if (ft_strcmp("HOME", tmp->keyword) == 0)
+		{
+			return (tmp->value);
+		}
+		tmp = tmp->next;
+	}
+	return (NULL);
 }
 
 void	*env_parsing(char **env, t_env **env_v2)

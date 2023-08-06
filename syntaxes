@@ -1,9 +1,0 @@
-operator then cmd ">> " does something
-operator then cmd "> f" does something
-operator then cmd "<< f" should open herdoc 
-operator then cmd ">> f" does nothing
-cmd then operator then word "ls >> s" does somehing	
-cmd then operator then word "ls << s" does somehing	
-solo operator is syntax error
-two continus operator is syntax error 
- 
